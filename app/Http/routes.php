@@ -23,5 +23,5 @@ Route::get('/manager', 'managerController@index');
 Route::get('/manage', 'managerController@index');
 
 Route::get('/bill_receive', 'managerController@bill_receive');
-Route::get('/create_area', 'managerController@create_area');
+Route::get('/create_user', 'managerController@create_user');
 Route::get('/manage', 'managerController@index');

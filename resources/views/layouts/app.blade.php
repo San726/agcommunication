@@ -119,13 +119,11 @@
                             </ul>
                         </li>
                 @else
-                        <li><a href="{{ url('/update_user') }}">Profile</a></li>
-                        <li><a href="{{ url('/create_user') }}">Add Area</a></li>
-                        <li><a href="{{ url('/create_area') }}">Add User</a></li>
+                        <li><a href="{{ url('/create_user') }}">Create User</a></li>
+                        <li><a href="{{ url('/profile') }}">Profile</a></li>
+                        <li><a href="{{ url('/create_area') }}">Add Area</a></li>
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
                         <li><a href="{{ url('/Add Customer Info') }}">Customer Info</a></li>
-                        <li><a href="{{ url('/Add Customer Info') }}">Access Level</a></li>
-                        <li><a href="{{ url('/bill_receive') }}">Bill Receive</a></li>
                         <li><a href="{{ url('/bill_receive') }}">Bill Receive</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">

@@ -26,7 +26,7 @@ class managerController extends Controller
         return view('bill_receive');
     }
 
-    public function create_area(){
-        return view('create_area');
+    public function create_user(){
+        return view('create_user');
     }
 }
