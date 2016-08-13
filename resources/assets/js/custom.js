@@ -8,12 +8,21 @@ $( function() {
     $( "#connecteddatepicker" ).datepicker();
 });
 
-function requiredPermanentAddress() {
+function genericCheckBoxDisabler($token, $id) {
     // alert('asdfa');
-    if($("#address").prop("checked")){
-        $('#Peraddress').attr('disabled',true);
-    }else if ($("#address").is(":not(:checked)")){
-        $('#Peraddress').attr('disabled',false);
+    if($($token).prop("checked")){
+        $($id).attr('disabled',true);
+    }else if ($($token).is(":not(:checked)")){
+        $($id).attr('disabled',false);
     }
+}
 
+function genericSelectDisabler($token, $id) {
+
+    var checkVal = ($token).options[$token.selectedIndex].value;
+    if(checkVal != 'default'){
+        $($id).attr('disabled',true);
+    }else if (checkVal == 'default'){
+        $($id).attr('disabled',false);
+    }
 }

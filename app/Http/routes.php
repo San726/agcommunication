@@ -22,6 +22,9 @@ Route::get('/home', 'HomeController@index');
 Route::get('/manager', 'managerController@index');
 Route::get('/manage', 'managerController@index');
 
-Route::get('/bill_receive', 'managerController@bill_receive');
-Route::get('/create_user', 'managerController@create_user');
+Route::get('/bill', 'managerController@bill_receive');
+Route::get('/user', 'managerController@create_user');
+Route::get('/profile', 'managerController@profile');
+
+
 Route::get('/manage', 'managerController@index');

@@ -119,12 +119,12 @@
                             </ul>
                         </li>
                 @else
-                        <li><a href="{{ url('/create_user') }}">Create User</a></li>
+                        <li><a href="{{ url('/user') }}">Create User</a></li>
                         <li><a href="{{ url('/profile') }}">Profile</a></li>
-                        <li><a href="{{ url('/create_area') }}">Add Area</a></li>
+                        <li><a href="{{ url('/area') }}">Add Area</a></li>
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
-                        <li><a href="{{ url('/Add Customer Info') }}">Customer Info</a></li>
-                        <li><a href="{{ url('/bill_receive') }}">Bill Receive</a></li>
+                        <li><a href="{{ url('/CustomerInfo') }}">Customer Info</a></li>
+                        <li><a href="{{ url('/bill') }}">Bill Receive</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 All Reports
@@ -158,6 +158,19 @@
 
     @yield('content')
 
+    <footer>
+        <div class="row">
+            <hr>
+            <div class="col-lg-12">
+                <div class="col-md-8">
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy</a>
+                </div>
+                <div class="col-md-4">
+                    <p class="muted pull-right">© 2016 Ag Communication. All rights reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- JavaScripts -->
     {{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
      <script src="{{ elixir('js/all.js') }}"></script>

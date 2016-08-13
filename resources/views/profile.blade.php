@@ -1,18 +1,18 @@
 @extends('profile_template')
 
 @section('head_describe')
-    <h3 id="pageMTiles">Create User Profile</h3>
+    <h3 id="pageMTiles">User Profile</h3>
 @endsection
 
 @section('full_name')
     <div class="form-group has-feedback">
-        <input type="name" class="form-control" id="name" placeholder="Full Name">
+        <input type="name" class="form-control" id="fullname" placeholder="Full Name" disabled>
         <i class="form-control-feedback glyphicon glyphicon-user"></i>
     </div>
 @endsection
 
 @section('gender')
-    <div class="radio form-control">
+    <div class="radio form-control" disabled>
         <label>
             <input type="radio" name="gender" id="gender" value="female">
             Female
@@ -32,7 +32,7 @@
 @endsection
 
 @section('DOB')
-    <div class="input-group date">
+    <div class="input-group date" disabled>
         <input type="text" class="form-control" placeholder="Date of Birth" id="birthdatepicker">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -46,20 +46,39 @@
         <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
     </div>
     <br>
-    <div class="form-group" id="pageMTiles">
-        <input type="checkbox" name="address" id="address" onclick="genericCheckBoxDisabler(address, Peraddress)">
-        &nbsp;Check if Present Address and Permanent Address are the Same.
-    </div>
-    {{--<div id="address" onclick="requiredPermanentAddress()">click here</div>--}}
-    <br>
     <div class="form-group has-feedback">
-        <input type="username" class="form-control" id="Peraddress" placeholder="Enter Permanent Address">
+        <input type="username" class="form-control" id="Peraddress" placeholder="Enter Permanent Address" disabled>
         <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
     </div>
 @endsection
 
 @section('button')
-    <div class="col-lg-12">
-        <button type="button" class="btn btn-default btn-lg pull-right">Submit</button>
+    <div class="col-lg-9"></div>
+    <div class="col-lg-1">
+        @if (Auth::check(['email' => 'shanewasahmed@gmail.com']))
+            <button type="button" onclick="enable()" class="btn btn-danger btn-lg pull-right">Edit</button>
+        @endif
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-1">
+        <button type="button" class="btn btn-success btn-lg pull-right">Submit</button>
     </div>
 @endsection
+
+@section('form_disable_js')
+    <script>
+        $('input').attr('disabled',true);
+        $('select').attr('disabled',true);
+        $('textarea').attr('disabled',true);
+
+        function enable() {
+            $('input').attr('disabled',false);
+            $('select').attr('disabled',false);
+            $('textarea').attr('disabled',false);
+            $('#fullname').attr('disabled',true);
+            $('#Peraddress').attr('disabled',true);
+            $('#birthdatepicker').attr('disabled',true);
+        }
+    </script>
+@endsection
+

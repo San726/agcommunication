@@ -29,4 +29,8 @@ class managerController extends Controller
     public function create_user(){
         return view('create_user');
     }
+
+    public function profile(){
+        return view('profile');
+    }
 }
