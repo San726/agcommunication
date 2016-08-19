@@ -22,10 +22,11 @@ elixir(function(mix) {
             'bootstrap-datepicker.js',
             'custom.js'
         ])
-
+        .scripts('profile_control.js')
         .version([
             'css/all.css',
-            'js/all.js'
+            'js/all.js',
+            'js/profile_control.js'
         ])
 });
 

@@ -4,6 +4,7 @@
     <div class="container">
         <br><br>
         <br><br>
+        @foreach($profile as $pro)
         <form action="">
             <div class="col-xs-12">
                 @yield('head_describe')
@@ -17,12 +18,12 @@
                 <br>
                 <br>
                 <div class="form-group has-feedback">
-                    <input type="username" class="form-control" id="name" placeholder="User Name">
+                    <input type="username" class="form-control" id="name" placeholder="User Name" value="{{ $pro->username }}">
                     <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
                 </div>
                 <br>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" value="{{ $pro->password }}">
                     <i class="form-control-feedback fa fa-user-secret fa-lg"></i>
                 </div>
                 <br>
@@ -86,11 +87,9 @@
                 <br>
                 <select class="form-control selectpicker">
                     <option>--- Bill Payment Date ---</option>
-                    <?php
-                    for ($i = 1; $i<=31; $i++){
-                        echo "<option value='".$i."'>".$i."</option>";
-                    }
-                    ?>
+                    @for($i=1;$i<=31;$i++)
+                        <option value={{$i}}>{{$i}}</option>";
+                    @endfor
                 </select>
                 <br>
                 <br>
@@ -131,6 +130,7 @@
                 <br>
             </div>
         </form>
+        @endforeach
     </div>
 
     @yield('form_disable_js')

@@ -8,6 +8,10 @@ $( function() {
     $( "#connecteddatepicker" ).datepicker();
 });
 
+$(document).ready(function() {
+    $('#CInfo').DataTable();
+} );
+
 function genericCheckBoxDisabler($token, $id) {
     // alert('asdfa');
     if($($token).prop("checked")){
@@ -22,6 +26,8 @@ function genericSelectDisabler($token, $id) {
     var checkVal = ($token).options[$token.selectedIndex].value;
     if(checkVal != 'default'){
         $($id).attr('disabled',true);
+        // alert($($token).val());
+        $($id).val($($token).val());
     }else if (checkVal == 'default'){
         $($id).attr('disabled',false);
     }

@@ -24,7 +24,12 @@ Route::get('/manage', 'managerController@index');
 
 Route::get('/bill', 'managerController@bill_receive');
 Route::get('/user', 'managerController@create_user');
-Route::get('/profile', 'managerController@profile');
+//Route::get('/profile', 'managerController@profile');
+Route::get('/area', 'managerController@create_area');
+Route::get('/CustomerInfo', 'reportController@CustomerInfo');
+Route::get('/due', 'reportController@dueStatus');
+Route::get('/paid', 'reportController@paidStatus');
 
 
-Route::get('/manage', 'managerController@index');
+Route::get('/profile/{id}', 'managerController@showProfile');
+Route::get('/bill/{id}', 'managerController@bill_pay');

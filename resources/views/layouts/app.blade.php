@@ -20,6 +20,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" crossorigin="anonymous"></script>
 
 
     {{--<script>--}}
@@ -34,12 +35,25 @@
         /*.fa-btn {*/
             /*margin-right: 6px;*/
         /*}*/
+        .modal-dialog {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 5%;
+        }
+
+        .modal-content {
+            height: auto;
+            min-height: 100%;
+            border-radius: 0;
+        }
+
         li { cursor: pointer; cursor: hand; }
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-static-top header">
+        <div class="container wrapper">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -120,10 +134,10 @@
                         </li>
                 @else
                         <li><a href="{{ url('/user') }}">Create User</a></li>
-                        <li><a href="{{ url('/profile') }}">Profile</a></li>
+                        {{--<li><a href="{{ url('/profile') }}">Profile</a></li>--}}
                         <li><a href="{{ url('/area') }}">Add Area</a></li>
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
-                        <li><a href="{{ url('/CustomerInfo') }}">Customer Info</a></li>
+                        {{--<li><a href="{{ url('/customerInfo') }}">Customer Info</a></li>--}}
                         <li><a href="{{ url('/bill') }}">Bill Receive</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
@@ -131,10 +145,10 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="contact1.html">All Customer info</a></li>
+                                <li><a href="{{ url('/CustomerInfo') }}">All Customer info</a></li>
                                 <li><a href="contact2.html">Month wise billing sheet</a></li>
-                                <li><a href="contact2.html">Payments Due list</a></li>
-                                <li><a href="contact2.html">Payment Paid list</a></li>
+                                <li><a href="{{ url('/due') }}">Payments Due list</a></li>
+                                <li><a href="{{ url('/paid') }}">Payment Paid list</a></li>
                                 <li><a href="contact2.html">Date wise Billi sheet</a></li>
                                 <li><a href="contact2.html">Customer Personal statements</a></li>
                                 <li><a href="contact2.html"> Date wise bill paid sheet</a></li>
@@ -156,9 +170,11 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="content">
+        @yield('content')
+    </div>
 
-    <footer>
+    <footer class="footer">
         <div class="row">
             <hr>
             <div class="col-lg-12">
@@ -173,7 +189,9 @@
     </footer>
     <!-- JavaScripts -->
     {{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
-     <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
     {{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
