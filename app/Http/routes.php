@@ -26,10 +26,22 @@ Route::get('/bill', 'managerController@bill_receive');
 Route::get('/user', 'managerController@create_user');
 //Route::get('/profile', 'managerController@profile');
 Route::get('/area', 'managerController@create_area');
-Route::get('/CustomerInfo', 'reportController@CustomerInfo');
+
+Route::get('/customer_info', 'reportController@CustomerInfo');
+
 Route::get('/due', 'reportController@dueStatus');
 Route::get('/paid', 'reportController@paidStatus');
 
+//Route::get('/bill_by_date', 'reportController@datewisebillsheetafterpost');
+Route::post('/bill_by_date', 'reportController@datewisebillsheetafterpost');
+
+//Route::post('/bill-paid', 'reportController@datewisebillpaidsheet');
+//Route::post('/bill-paid', 'reportController@datewisebillpaidsheetafterpost');
+
+Route::get('/area_bill', 'reportController@area_bill');
+
+Route::get('/b/{id}', 'managerController@bill_pay');
 
 Route::get('/profile/{id}', 'managerController@showProfile');
-Route::get('/bill/{id}', 'managerController@bill_pay');
+
+Route::get('/p/{name}', 'managerController@showProfileByName');

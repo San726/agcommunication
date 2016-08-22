@@ -40,6 +40,7 @@ class Seed extends Command
     {
             DB::table('clients')
                         ->update(['paidStatus' => 'due']);
+
 //        DB::table('clients')->insert([
 //            'name' => str_random(10),
 //            'email' => str_random(10).'@gmail.com',
@@ -47,7 +48,8 @@ class Seed extends Command
 //            'status' => 'free',
 //            'gender' => 'female',
 //
-//            'area' => str_random(10),
+////            'area' => str_random(10),
+//            'area' => 'kafrul',
 //            'username' => str_random(7),
 //
 //            'Father' => str_random(6),
@@ -65,7 +67,7 @@ class Seed extends Command
 //            'dataScheme' => random_int(1,10),
 //            'payment' => random_int(1,31),
 //            'comment' => str_random(200),
-//            'paidStatus' => 'due',
+//            'paidStatus' => 'paid',
 //        ]);
         $this->info('succesfully');
     }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ $date }}
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-1"></div>
@@ -23,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($due as $user)
+                    @foreach($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->area }}</td>

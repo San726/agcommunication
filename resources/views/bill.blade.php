@@ -4,41 +4,84 @@
     <div class="container">
         <br><br>
         <br><br>
+        @foreach($profile as $pro)
         <form action="">
             <div class="col-xs-12">
                 <h3 id="pageMTiles">Bill Receipt</h3>
                 <br>
                 <div class="row">
-                    <div class="col-lg-11">
+                    <div class="col-lg-12">
                         <div class="form-group has-feedback">
-                            <input type="username" class="form-control" id="username" placeholder="User Name">
-                            <i class="form-control-feedback glyphicon glyphicon-user"></i>
+                            {{--<span class="input-group-addon">--}}
+                                {{--<span>Credential</span>--}}
+                                {{--&nbsp;--}}
+                                {{--<span class="glyphicon glyphicon-info-sign"></span>--}}
+                                {{--<span class="fa fa-info-circle fa-lg"></span>--}}
+                            {{--</span>--}}
+                            <div class="input-group">
+                                <input type="username" class="form-control" id="username" placeholder="User Name" value="{{ $pro->username }}">
+                                <span class="input-group-addon">
+                                    <span>User Name</span>
+                                    &nbsp;
+                                    {{--<span class="glyphicon glyphicon-info-sign"></span>--}}
+                                    <span class="fa fa-info-circle fa-lg"></span>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="password" placeholder="Password" value="{{ $pro->password }}">
+                                <span class="input-group-addon">
+                                    <span>Password</span>
+                                    &nbsp;
+                                    {{--<span class="glyphicon glyphicon-info-sign"></span>--}}
+                                    <span class="fa fa-info-circle fa-lg"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-1">
-                        <button type="button" class="btn btn-default">FIND</button>
-                    </div>
+                    {{--<div class="col-lg-1">--}}
+                        {{--<button type="button" class="btn btn-default">FIND</button>--}}
+                    {{--</div>--}}
 
                 </div>
                 <br>
                 <hr>
                 <br>
-                <div class="form-group has-feedback">
-                    <input type="number" min="0" minlength="5" class="form-control" id="receiptno" placeholder="Receipt No.">
-                    <i class="form-control-feedback fa fa-sticky-note" aria-hidden="true"></i>
+                <div class="form-group input-group has-feedback">
+                    <input type="number" min="0" minlength="5" class="form-control" id="receiptno" placeholder="Receipt No." value="{{ random_int(000000000,999999999) }}">
+                    <span class="input-group-addon">
+                        <span>Receipt No.</span>
+                        &nbsp;
+                        <span class="fa fa-sticky-note" aria-hidden="true"></span>
+                    </span>
                 </div>
 
                 <br>
                 <h4 id="pageMTiles" >Bill Payment</h4>
                 <br>
-                <div class="input-group date">
-                    @if (Auth::check(['email' => 'shanewasahmed@gmail.com']))
-                        <input type="text" class="form-control" placeholder="Billing Date " id="billingdatepicker">
-                    @else
-                        <input type="text" disabled class="form-control" placeholder="Billing Date " id="billingdatepicker">
-                    @endif
+                {{--<div class="input-group date">--}}
+                    {{--@if (Auth::check(['email' => 'shanewasahmed@gmail.com']))--}}
+                        {{--<input type="text" class="form-control" placeholder="Billing Date " value="{{ $pro->payment }}">--}}
+                        {{--<input type="text" class="form-control" placeholder="Billing Date " id="billingdatepicker" value="{{ $pro->payment }}">--}}
+                    {{--@else--}}
+                        {{--<input type="text" disabled class="form-control" placeholder="Billing Date " id="billingdatepicker">--}}
+                    {{--@endif--}}
+                    {{--<span class="input-group-addon">--}}
+                        {{--<span class="glyphicon glyphicon-calendar"></span>--}}
+                    {{--</span>--}}
+                {{--</div>--}}
+                <div class="input-group">
+                    <input type="number" class="form-control" id="payment" placeholder="Payment Date" value="{{ $pro -> payment }}">
+                    <select class="form-control selectpicker" id="payday" onchange="genericSelectDisabler(payday,payment)">
+                        <option>--- Bill Payment Date ---</option>
+                        @for($i=1;$i<=31;$i++)
+                            <option value={{$i}}>{{$i}}</option>";
+                        @endfor
+                    </select>
                     <span class="input-group-addon">
+                        <span>Monthly Bill Payment Date</span>
+                        &nbsp;
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
@@ -64,14 +107,14 @@
                 <br>
                 <h4 id="pageMTiles">Type</h4>
                 <br>
-                <div class="radio form-control">
+                <div class="checkbox form-control">
                     <label>
-                        <input type="radio" name="BillTypo" id="optionsRadios1" value="cash" checked>
+                        <input type="checkbox" name="BillTypo" id="monthcheck" onchange="Check('monthcheck', '{{ $pro->bill }}' ,'amount')" value="cash" checked>
                         Monthly Bill
                     </label>
                     &nbsp;
                     <label>
-                        <input type="radio" name="BillTypo" id="optionsRadios1" value="bkash">
+                        <input type="checkbox" name="BillTypo" id="linecheck" onchange="Check('linecheck', '1000' ,'amount')" value="bkash">
                         Line Charge
                     </label>
                 </div>
@@ -79,7 +122,7 @@
                 <br>
                 <div class="input-group">
                     <div class="input-group-addon">$</div>
-                    <input type="number" min="1" max="1000000" class="form-control" id="amount" placeholder="Amount">
+                    <input type="number" min="1" max="1000000" class="form-control" id="amount" placeholder="Amount" value="{{ $pro-> bill }}">
                     <div class="input-group-addon">.00</div>
                 </div>
                 <br>
@@ -118,6 +161,6 @@
                 </div>
             </div>
         </form>
+        @endforeach
     </div>
-
 @endsection

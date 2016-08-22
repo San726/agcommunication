@@ -6,6 +6,9 @@ $( function() {
     $( "#billentrydatepicker" ).datepicker();
     $( "#birthdatepicker" ).datepicker();
     $( "#connecteddatepicker" ).datepicker();
+    $( "#connecteddatepicker_Bill" ).datepicker({
+        stepMonths: 0,
+    });
 });
 
 $(document).ready(function() {
@@ -30,5 +33,13 @@ function genericSelectDisabler($token, $id) {
         $($id).val($($token).val());
     }else if (checkVal == 'default'){
         $($id).attr('disabled',false);
+    }
+}
+
+function Check($token, $value, $effect) {
+    if (document.getElementById($token).checked) {
+        $('#'+$effect).val(Number($('#'+$effect).val()) + Number($value));
+    }else{
+        $('#'+$effect).val(Number($('#'+$effect).val()) - Number($value));
     }
 }

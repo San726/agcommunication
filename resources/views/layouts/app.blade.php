@@ -11,7 +11,10 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+    {{--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">--}}
+    {{--<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">--}}
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&subset=bengali" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -28,9 +31,12 @@
     {{--</script>--}}
 
     <style>
-        /*body {*/
+        body {
+            font-family: 'Space Mono', monospace;
+            /*font-family: 'Poiret One', cursive;*/
             /*font-family: 'Lato';*/
-        /*}*/
+            /*font-family: 'Hind Siliguri', sans-serif;*/
+        }
 
         /*.fa-btn {*/
             /*margin-right: 6px;*/
@@ -145,11 +151,11 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/CustomerInfo') }}">All Customer info</a></li>
-                                <li><a href="contact2.html">Month wise billing sheet</a></li>
-                                <li><a href="{{ url('/due') }}">Payments Due list</a></li>
-                                <li><a href="{{ url('/paid') }}">Payment Paid list</a></li>
-                                <li><a href="contact2.html">Date wise Billi sheet</a></li>
+                                <li><a href="{{ url('customer_info') }}">All Customer info</a></li>
+                                {{--<li><a href="{{ url('area_bill') }}">Area wise billing sheet</a></li>--}}
+                                <li><a href="{{ url('due') }}">Payments Due list</a></li>
+                                <li><a href="{{ url('paid') }}">Payment Paid list</a></li>
+                                {{--<li><a href="{{ url('bill_by_date') }}">Date wise Billi sheet</a></li>--}}
                                 <li><a href="contact2.html">Customer Personal statements</a></li>
                                 <li><a href="contact2.html"> Date wise bill paid sheet</a></li>
                             </ul>

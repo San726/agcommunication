@@ -27,9 +27,15 @@ class managerController extends Controller
         return view('bill_receive');
     }
 
-    public function bill_pay($id){
-        $profile = DB::table('clients')->where('id', $id)->get();
-        return view('bill', compact('profile'));
+    public function bill_pay($name){
+        $id = $_GET['csrf'];
+        $profile = DB::table('clients')
+            ->where('id', $id)
+            ->where('name', $name)->get();
+        if($profile)
+            return view('bill', compact('profile'));
+        else
+            return view('errors.404');
     }
 
     public function create_user(){
@@ -43,6 +49,19 @@ class managerController extends Controller
     public function showProfile($id){
         $profile = DB::table('clients')->where('id', $id)->get();
         return view('profile', compact('profile'));
+//        return $profile;
+    }
+
+    public function showProfileByName($name){
+        $id = $_GET['csrf'];
+        $profile = DB::table('clients')
+                        ->where('id', $id)
+                        ->where('name', $name)->get();
+        if($profile)
+            return view('profile', compact('profile'));
+        else
+            return view('errors.404');
+//
 //        return $profile;
     }
 
