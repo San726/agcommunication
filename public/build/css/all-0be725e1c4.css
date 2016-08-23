@@ -209,4 +209,17 @@ body {
     bottom:0;
     left:0;
 }
+
+@media print {
+    #noPrint{display: none;}
+    header{display: block;}
+    footer{display: none;}
+    #print{display: block;}
+    /*a{display: none;}*/
+    a[href]:after {
+        content: none !important;
+    }
+    /*font-family: 'Arima Madurai', cursive;*/
+    table, tr, td{font-size: 5pt;}
+}
 /*# sourceMappingURL=all.css.map */

@@ -156,7 +156,9 @@
                 <hr>
                 <br>
                 <div class="form-group has-feedback">
-                    <textarea class="form-control" name="comments" id="comments" cols="155" rows="10" placeholder="write some comments here ..."></textarea>
+                    <textarea class="form-control" name="comments" id="comments" cols="155" rows="10" placeholder="write some comments here ...">
+                        {{ $pro->comment }}
+                    </textarea>
                     {{--<i class="form-control-feedback fa fa-sticky-note" aria-hidden="true"></i>--}}
                 </div>
             </div>

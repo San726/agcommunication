@@ -15,6 +15,7 @@
     {{--<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">--}}
     <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri&subset=bengali" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -144,20 +145,21 @@
                         <li><a href="{{ url('/area') }}">Add Area</a></li>
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
                         {{--<li><a href="{{ url('/customerInfo') }}">Customer Info</a></li>--}}
-                        <li><a href="{{ url('/bill') }}">Bill Receive</a></li>
+                        {{--<li><a href="{{ url('/bill') }}">Bill Receive</a></li>--}}
+                        <li><a href="{{ url('customer_info') }}">Report</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">
-                                All Reports
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                                Payments Status
                                 <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url('customer_info') }}">All Customer info</a></li>
+                        <ul class="dropdown-menu">
+                                {{--<li><a href="{{ url('customer_info') }}">All Customer info</a></li>--}}
                                 {{--<li><a href="{{ url('area_bill') }}">Area wise billing sheet</a></li>--}}
                                 <li><a href="{{ url('due') }}">Payments Due list</a></li>
                                 <li><a href="{{ url('paid') }}">Payment Paid list</a></li>
                                 {{--<li><a href="{{ url('bill_by_date') }}">Date wise Billi sheet</a></li>--}}
                                 <li><a href="contact2.html">Customer Personal statements</a></li>
-                                <li><a href="contact2.html"> Date wise bill paid sheet</a></li>
+                                {{--<li><a href="contact2.html"> Date wise bill paid sheet</a></li>--}}
                             </ul>
                         </li>
 

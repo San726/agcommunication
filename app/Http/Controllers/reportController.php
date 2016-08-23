@@ -91,6 +91,7 @@ class reportController extends Controller
                     ->get();
 
 //        return $bill;
+//        return $dates;
         return view('customer_info', compact('users','dates','bill','area'));
     }
 
