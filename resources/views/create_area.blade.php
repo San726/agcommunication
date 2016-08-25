@@ -5,28 +5,22 @@
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Active Area</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Ibrahimpur</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Kazipara</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>PoliceLine</td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Active Area</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach( $areas as $area)
+                            <tr>
+                                <td>{{ $area->id }}</td>
+                                <td>{{ $area->area }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -45,10 +39,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <form role="form">
+                    <form role="form" action="/area" method="post">
                         <div class="form-group">
                             <label for="text">Create Area</label>
-                            <input type="text" class="form-control" id="area_text">
+                            {{csrf_field()}}
+                            <input type="text" class="form-control" name="area_name" id="area_text">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>

@@ -19,6 +19,7 @@ function genericCheckBoxDisabler($token, $id) {
     // alert('asdfa');
     if($($token).prop("checked")){
         $($id).attr('disabled',true);
+
     }else if ($($token).is(":not(:checked)")){
         $($id).attr('disabled',false);
     }

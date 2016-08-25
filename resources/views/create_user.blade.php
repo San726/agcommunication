@@ -4,50 +4,51 @@
     <div class="container">
         <br><br>
         <br><br>
-        <form action="">
+        <form action="/user" method="post">
+            {{csrf_field()}}
             <div class="col-xs-12">
             <h3 id="pageMTiles">Create User Profile</h3>
             <br>
-            <select class="form-control selectpicker">
-            <option>--- Select Area ---</option>
-            <option value="january">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
+            <select class="form-control selectpicker" name="area">
+                <option>--- Select Area ---</option>
+                @foreach($areas as $area)
+                    <option value="{{ $area->area }}">{{ $area->area }}</option>
+                @endforeach
             </select>
             <br>
             <br>
             <div class="form-group has-feedback">
-            <input type="username" class="form-control" id="name" placeholder="User Name">
+            <input type="username" class="form-control" name="username" id="name" placeholder="User Name">
             <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="text" class="form-control" name="password" id="password" placeholder="Password">
             <i class="form-control-feedback fa fa-user-secret fa-lg"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" placeholder="Full Name">
+            <input type="name" class="form-control" name="name" id="name" placeholder="Full Name">
             <i class="form-control-feedback glyphicon glyphicon-user"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="email" class="form-control" id="email" placeholder="Email Address">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
             <i class="form-control-feedback glyphicon glyphicon-inbox"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" placeholder="Father's Name/ Husband's Name">
+            <input type="name" class="form-control" id="name" name="Father" placeholder="Father's Name/ Husband's Name">
             <i class="form-control-feedback fa fa-male fa-lg"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" placeholder="Mother's Name">
+            <input type="name" class="form-control" id="name" name="Mother" placeholder="Mother's Name">
             <i class="form-control-feedback fa fa-female fa-lg"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" placeholder="Company Name">
+            <input type="name" class="form-control" id="name" name="Company" placeholder="Company Name">
             <i class="form-control-feedback glyphicon glyphicon-briefcase"></i>
             </div>
             <br>
@@ -70,7 +71,7 @@
             </div>
             <br>
             <div class="input-group date">
-            <input type="text" class="form-control" placeholder="Date of Birth" id="birthdatepicker">
+            <input type="text" class="form-control" name="dob" placeholder="Date of Birth" id="birthdatepicker">
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -78,7 +79,7 @@
             <br>
             <br>
             <div class="form-group has-feedback">
-            <input type="address" class="form-control" id="Preaddress" placeholder="Enter Present Address">
+            <input type="address" class="form-control" name="PresentAddress" id="Preaddress" placeholder="Enter Present Address">
             <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
             </div>
             <br>
@@ -89,12 +90,12 @@
             {{--<div id="address" onclick="requiredPermanentAddress()">click here</div>--}}
             <br>
             <div class="form-group has-feedback">
-            <input type="username" class="form-control" id="Peraddress" placeholder="Enter Permanent Address">
+            <input type="username" class="form-control" name="PermanentAddress" id="Peraddress" placeholder="Enter Permanent Address">
             <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
             </div>
             <br>
             <div class="input-group date">
-            <input type="text" class="form-control" placeholder="Connected From" id="connecteddatepicker">
+            <input type="text" class="form-control" name="connectedFrom" placeholder="Connected From" id="connecteddatepicker">
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -102,13 +103,13 @@
             <br>
             <br>
             <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Phone Number">
+            <input type="text" class="form-control" name="phone" placeholder="Phone Number">
             <i class="form-control-feedback glyphicon glyphicon-phone"></i>
             </div>
             <br>
             <div class="input-group">
             <div class="input-group-addon">$</div>
-            <input type="number" min="1" max="1000000" class="form-control" id="amount" placeholder="Monthly Bill">
+            <input type="number" min="1" max="1000000" class="form-control" name="bill" id="amount" placeholder="Monthly Bill">
             <select class="form-control selectpicker" id="billScheme" onchange="genericSelectDisabler(billScheme, amount)">
             <option value="default">-- Select Bill Scheme --</option>
             <option value="000">Free</option>
@@ -122,7 +123,7 @@
             </div>
             <br>
             <br>
-            <select class="form-control selectpicker">
+            <select class="form-control selectpicker" name="payment">
             <option>--- Bill Payment Date ---</option>
             @for($i=1;$i<=31;$i++)
             <option value={{$i}}>{{$i}}</option>";
@@ -131,8 +132,8 @@
             <br>
             <br>
             <div class="input-group">
-            <input type="number" min="1" max="1000000" class="form-control" id="speed" placeholder="Connection speed">
-            <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,speed)">
+            <input type="number" min="1" max="1000000" class="form-control" name="dataScheme" id="bandwidth" placeholder="Connection speed">
+            <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,bandwidth)">
             <option value="default">-- Select Subscription Scheme (Speed/Bandwidth) --</option>
             <option value="512">512 kbps</option>
             <option value="1 Mbps">1 Mbps</option>
@@ -145,7 +146,7 @@
             </div>
             <br>
             <br>
-            <select class="form-control selectpicker">
+            <select class="form-control selectpicker" name="status">
             <option>-- Connection Status --</option>
             <option value="Active">Active</option>
             <option value="Free">Free</option>
@@ -163,7 +164,7 @@
             <br>
             <div class="row">
             <div class="col-lg-12">
-            <button type="button" class="btn btn-default btn-lg pull-right">Submit</button>
+            <button type="submit" class="btn btn-default btn-lg pull-right">Submit</button>
             </div>
             </div>
             <br>
