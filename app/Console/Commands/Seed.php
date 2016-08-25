@@ -67,7 +67,7 @@ class Seed extends Command
             'dataScheme' => random_int(1,10),
             'payment' => random_int(1,31),
             'comment' => str_random(200),
-            'paidStatus' => 'paid',
+            'paidStatus' => 'due',
         ]);
         $this->info('succesfully');
     }

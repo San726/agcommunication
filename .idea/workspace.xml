@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05ac4f86-52e3-48a8-9989-a7a16ff1b007" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/Seed.php" afterPath="$PROJECT_DIR$/app/Console/Commands/Seed.php" />
     </list>
     <ignored path="agcomm.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,21 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state relative-caret-position="279">
+              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Seed.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Seed.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Console/Commands/Seed.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+            <state relative-caret-position="684">
+              <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -98,7 +99,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
               <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-              <folding />
+              <folding>
+                <element signature="e#7#392#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,8 +143,8 @@
         <option value="$PROJECT_DIR$/resources/views/profile_template.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/create_user.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bill.blade.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/Seed.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/Seed.php" />
       </list>
     </option>
   </component>
@@ -163,7 +166,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="22" />
     <option name="width" value="1936" />
     <option name="height" value="1066" />
@@ -448,15 +451,15 @@
       <workItem from="1471932622848" duration="96000" />
       <workItem from="1471932726510" duration="14565000" />
       <workItem from="1472028434481" duration="1657000" />
-      <workItem from="1472133659932" duration="1971000" />
+      <workItem from="1472133659932" duration="2428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27730000" />
+    <option name="totallyTimeSpent" value="28187000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="22" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -529,7 +532,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
           <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -607,7 +612,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
           <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -844,7 +851,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="e#7#392#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -880,18 +889,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/Seed.php">
+    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="279">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/Seed.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
           <folding />
         </state>
       </provider>
