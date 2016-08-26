@@ -42,6 +42,6 @@ Route::get('/area_bill', 'reportController@area_bill');
 
 Route::get('/b/{id}', 'managerController@bill_pay');
 
-Route::get('/profile/{id}', 'managerController@showProfile');
+//Route::get('/profile/{id}', 'managerController@showProfile');
 
-Route::get('/p/{name}', 'managerController@showProfileByName');
+Route::any('/p/{name}', 'managerController@showProfileByName');

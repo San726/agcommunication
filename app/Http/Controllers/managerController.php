@@ -73,14 +73,45 @@ class managerController extends Controller
         return view('profile_found');
     }
 
-    public function showProfile($id){
-        $profile = DB::table('clients')->where('id', $id)->get();
-        return view('profile', compact('profile'));
-//        return $profile;
-    }
+//    public function showProfile($id){
+//        $profile = DB::table('clients')->where('id', $id)->get();
+//        return view('profile', compact('profile'));
+////        return $profile;
+//    }
 
     public function showProfileByName($name){
         $id = $_GET['csrf'];
+
+        if(!empty($_POST['area']))
+        {
+            DB::table('clients')
+                        ->where('id', $id)
+                        ->update(
+                [
+                    'area' => $_POST['area'],
+                    'username' => $_POST['username'],
+                    'password' => $_POST['password'],
+//                    'name' => $_POST['name'],
+                    'email' => $_POST['email'],
+                    'Father' => $_POST['Father'],
+                    'Mother' => $_POST['Mother'],
+                    'Company' => $_POST['Company'],
+                    'gender' => $_POST['gender'],
+                    'dob' => $_POST['dob'],
+                    'PresentAddress' => $_POST['PresentAddress'],
+//                    'PermanentAddress' => $_POST['PermanentAddress'],
+                    'connectedFrom' => $_POST['connectedFrom'],
+                    'phone' => $_POST['phone'],
+                    'bill' => $_POST['bill'],
+                    'dataScheme' => $_POST['dataScheme'],
+                    'payment' => $_POST['payment'],
+                    'status' => $_POST['status'],
+                    'comment' => $_POST['comments'],
+                    'paidStatus' => $_POST['paidStatus']
+                ]);
+        }
+
+
         $profile = DB::table('clients')
                         ->where('id', $id)
                         ->where('name', $name)->get();

@@ -29,10 +29,11 @@ function genericSelectDisabler($token, $id) {
 
     var checkVal = ($token).options[$token.selectedIndex].value;
     if(checkVal != 'default'){
-        $($id).attr('disabled',true);
+        // $($id).attr('disabled',true);
         // alert($($token).val());
         $($id).val($($token).val());
     }else if (checkVal == 'default'){
+        // $($id).attr('disabled',true);
         $($id).attr('disabled',false);
     }
 }

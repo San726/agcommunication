@@ -5,12 +5,13 @@
         <br><br>
         <br><br>
         @foreach($profile as $pro)
-            <form action="">
+            <form action="/p/{{ $pro->name }}?csrf={{ $pro->id }}" method="post">
                 <div class="col-xs-12">
                     <h3 id="pageMTiles">User Profile</h3>
                     <br>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group input-group">
-                        <input id="areaValue" type="text" class="form-control" value="{{ $pro->area }}">
+                        <input id="areaValue" type="text" name="area" class="form-control" value="{{ $pro->area }}">
                         <select id="changeArea" onchange="genericSelectDisabler(changeArea, areaValue)" class="form-control selectpicker">
                             <option>--- Select Area ---</option>
                             <option value="Ibrahimpur">Ibrahimpur</option>
@@ -25,7 +26,7 @@
                     <br>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="username" class="form-control" id="name" placeholder="User Name" value="{{ $pro->username }}">
+                        <input type="username" class="form-control" name="username" id="name" placeholder="User Name" value="{{ $pro->username }}">
                         <span class="input-group-addon">
                             <span>User Name</span>
                             &nbsp;
@@ -34,7 +35,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="password" class="form-control" id="password" placeholder="Password" value="{{ $pro->password }}">
+                        <input type="text" class="form-control" name="password" id="password"  placeholder="Password" value="{{ $pro->password }}">
                         <span class="input-group-addon">
                             <span>Password</span>
                             &nbsp;
@@ -43,7 +44,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="name" class="form-control" id="fullname" placeholder="Full Name" value="{{ $pro->name }}" disabled>
+                        <input type="text" class="form-control" id="fullname" name="name" placeholder="Full Name" value="{{ $pro->name }}" disabled>
                         <span class="input-group-addon">
                             <span>Full Name</span>
                             &nbsp;
@@ -52,7 +53,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="email" class="form-control" id="email" placeholder="Email Address" value="{{ $pro->email }}">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ $pro->email }}">
                         <span class="input-group-addon">
                             <span>Email</span>
                             &nbsp;
@@ -61,7 +62,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="name" class="form-control" id="name" placeholder="Father's Name/ Husband's Name" value="{{ $pro->Father}}">
+                        <input type="name" class="form-control" id="name" name="Father" placeholder="Father's Name/ Husband's Name" value="{{ $pro->Father}}">
                         <span class="input-group-addon">
                             <span>Father's Name / Husband's Name</span>
                             &nbsp;
@@ -70,7 +71,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="name" class="form-control" id="name" placeholder="Mother's Name" value="{{ $pro->Mother }}">
+                        <input type="name" class="form-control" id="name" name="Mother" placeholder="Mother's Name" value="{{ $pro->Mother }}">
                         <span class="input-group-addon">
                             <span>Mother's Name</span>
                             &nbsp;
@@ -79,7 +80,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="name" class="form-control" id="name" placeholder="Company Name" value="{{ $pro->Company }}">
+                        <input type="name" class="form-control" id="name" name="Company" placeholder="Company Name" value="{{ $pro->Company }}">
                         <span class="input-group-addon">
                             <span>Company's Name</span>
                             &nbsp;
@@ -105,7 +106,7 @@
                     {{--<i class="form-control-feedback fa fa-transgender fa-lg" aria-hidden="true"></i>--}}
                     {{--</div>--}}
                     <div class="form-group has-feedback input-group">
-                        <input data-toggle="tooltip" data-placement="left" title="gender" type="text" class="form-control"
+                        <input data-toggle="tooltip" data-placement="left" name="gender" title="gender" type="text" class="form-control"
                                placeholder="gender" value="{{ $pro->gender }}">
                         <span class="input-group-addon">
                             <span>Gender</span>
@@ -115,7 +116,7 @@
                     </div>
                     <br>
                     <div class="input-group date" disabled>
-                        <input type="text" class="form-control" placeholder="Date of Birth" value="{{ $pro->dob }}">
+                        <input type="text" class="form-control" name="dob" placeholder="Date of Birth" value="{{ $pro->dob }}">
                         <span class="input-group-addon">
                             <span>Date Of Birth</span>
                             &nbsp;
@@ -125,7 +126,7 @@
                     <br>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="address" class="form-control" id="Preaddress" placeholder="Enter Present Address" value="{{ $pro->PresentAddress }}">
+                        <input type="address" class="form-control" id="Preaddress" name="PresentAddress" placeholder="Enter Present Address" value="{{ $pro->PresentAddress }}">
                         <span class="input-group-addon">
                             <span>Present Address</span>
                             &nbsp;
@@ -134,7 +135,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="username" class="form-control" id="Peraddress" placeholder="Enter Permanent Address" disabled value="{{ $pro->PermanentAddress }}">
+                        <input type="username" class="form-control" id="Peraddress" name="PermanentAddress" placeholder="Enter Permanent Address" disabled value="{{ $pro->PermanentAddress }}">
                         <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
                         <span class="input-group-addon">
                             <span>Permanent Address</span>
@@ -144,7 +145,7 @@
                     </div>
                     <br>
                     <div class="input-group date">
-                        <input type="text" class="form-control" placeholder="Connected From" id="connecteddatepicker" value="{{ $pro-> connectedFrom }}">
+                        <input type="text" class="form-control" placeholder="Connected From" name="connectedFrom" id="connecteddatepicker" value="{{ $pro-> connectedFrom }}">
                         <span class="input-group-addon">
                             <span>Connected From</span>
                             &nbsp;
@@ -154,7 +155,7 @@
                     <br>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="text" class="form-control" placeholder="Phone Number" value="{{ $pro-> phone }}">
+                        <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="{{ $pro-> phone }}">
                         <span class="input-group-addon">
                             <span>Phone Number</span>
                             &nbsp;
@@ -163,7 +164,7 @@
                     </div>
                     <br>
                     <div class="input-group">
-                        <input type="number" min="1" max="1000000" class="form-control" id="amount" placeholder="Monthly Bill" value="{{ $pro->bill }}">
+                        <input type="number" min="1" max="1000000" class="form-control" name="bill" id="amount" placeholder="Monthly Bill" value="{{ $pro->bill }}">
                         <select class="form-control selectpicker" id="billScheme" onchange="genericSelectDisabler(billScheme, amount)">
                             <option value="default">-- Select Bill Scheme --</option>
                             <option value="000">Free</option>
@@ -183,7 +184,7 @@
                     <br>
                     <br>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="payment" placeholder="Payment Date" value="{{ $pro -> payment }}">
+                        <input type="number" class="form-control" id="payment" name="payment" placeholder="Payment Date" value="{{ $pro -> payment }}">
                         <select class="form-control selectpicker" id="payday" onchange="genericSelectDisabler(payday,payment)">
                             <option>--- Bill Payment Date ---</option>
                             @for($i=1;$i<=31;$i++)
@@ -199,7 +200,7 @@
                     <br>
                     <br>
                     <div class="input-group">
-                        <input type="number" min="1" max="1000000" class="form-control" id="speed" placeholder="Connection speed" value="{{ $pro->dataScheme }}">
+                        <input type="number" min="1" max="1000000" class="form-control" id="speed" name="dataScheme" placeholder="Connection speed" value="{{ $pro->dataScheme }}">
                         <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,speed)">
                             <option value="default">-- Select Subscription Scheme (Speed/Bandwidth) --</option>
                             <option value="512">512 kbps</option>
@@ -218,7 +219,7 @@
                     <br>
                     <br>
                     <div class="form-group input-group">
-                        <input id="statusValue" type="text" class="form-control" value="{{ $pro->status }}">
+                        <input id="statusValue" type="text" class="form-control" name="status" value="{{ $pro->status }}">
                         <select id="ChangeStatus" onchange="genericSelectDisabler(ChangeStatus,statusValue)" class="form-control selectpicker">
                             <option>-- Connection Status --</option>
                             <option value="Active">Active</option>
@@ -233,11 +234,11 @@
                     <br>
                     <div class="form-group input-group">
                          {{--{{ $pro->paid }}--}}
-                        <input id="paidstatusValue" type="text" class="form-control" value="{{ $pro -> paidStatus }}">
+                        <input id="paidstatusValue" type="text" class="form-control" name="paidStatus" value="{{ $pro -> paidStatus }}">
                         <select id="paidChangeStatus" onchange="genericSelectDisabler(paidChangeStatus,paidstatusValue)" class="form-control selectpicker">
                             <option>-- Payment Status --</option>
-                            <option value="Not Paid">Not Paid Yet</option>
-                            <option value="Paid">Paid</option>
+                            <option value="due">Not Paid Yet</option>
+                            <option value="paid">Paid</option>
                         </select>
                         <span class="input-group-addon">
                             <span>Connection Status</span>
@@ -263,7 +264,7 @@
                         </div>
                         <div class="col-lg-1"></div>
                         <div class="col-lg-1">
-                            <button type="button" class="btn btn-success btn-lg pull-right">Submit</button>
+                            <button type="submit" class="btn btn-success btn-lg pull-right">Submit</button>
                         </div>
                     </div>
                     <br>
