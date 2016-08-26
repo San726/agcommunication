@@ -101,6 +101,8 @@
         <div class="table-responsive">
                 <?php
                     $sum = 0;
+                    $paid = 0;
+                    $due = 0;
                 ?>
                 <table id="CInfo" class="table table-striped table-bordered">
                     <thead>
@@ -147,6 +149,11 @@
                                     @endif
                                 </td>
                             </tr>
+                            @if ($user -> paidStatus == 'paid')
+                                <input type="hidden" value="{{ $paid = $paid + $user->bill }}">
+                            @elseif($user -> paidStatus == 'due')
+                                <input type="hidden" value="{{ $due = $due + $user->bill }}">
+                            @endif
                             <input type="hidden" value="{{ $sum = $sum + $user->bill }}">
                         @endforeach
                     </tbody>
@@ -156,7 +163,17 @@
         <br>
         <br>
         <div class="container-fluid">
-            <H3 class="header pull-right">Total Bill: {{ $sum }}</H3>
+            <div class="row">
+                <div class="col-lg-12">
+                    <H3 class="header pull-right">Bill Paid: {{ $paid }}</H3>
+                </div>
+                <div class="col-lg-12">
+                    <H3 class="header pull-right">Bill Due: {{ $due }}</H3>
+                </div>
+                <div class="col-lg-12">
+                    <H3 class="header pull-right">Total Bill: {{ $sum }}</H3>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
