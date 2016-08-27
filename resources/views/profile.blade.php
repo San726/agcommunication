@@ -44,20 +44,11 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="text" class="form-control" id="fullname" name="name" placeholder="Full Name" value="{{ $pro->name }}" disabled>
+                        <input type="text" class="form-control" id="fullname" name="name" placeholder="Full Name" value="{{ $pro->name }}">
                         <span class="input-group-addon">
                             <span>Full Name</span>
                             &nbsp;
                             <span class="glyphicon glyphicon-user"></span>
-                        </span>
-                    </div>
-                    <br>
-                    <div class="form-group has-feedback input-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ $pro->email }}">
-                        <span class="input-group-addon">
-                            <span>Email</span>
-                            &nbsp;
-                            <span class="glyphicon glyphicon-inbox"></span>
                         </span>
                     </div>
                     <br>
@@ -135,7 +126,7 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="username" class="form-control" id="Peraddress" name="PermanentAddress" placeholder="Enter Permanent Address" disabled value="{{ $pro->PermanentAddress }}">
+                        <input type="username" class="form-control" id="Peraddress" name="PermanentAddress" placeholder="Enter Permanent Address" value="{{ $pro->PermanentAddress }}">
                         <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
                         <span class="input-group-addon">
                             <span>Permanent Address</span>
@@ -160,6 +151,15 @@
                             <span>Phone Number</span>
                             &nbsp;
                             <span class="glyphicon glyphicon-phone"></span>
+                        </span>
+                    </div>
+                    <br>
+                    <div class="form-group has-feedback input-group">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ $pro->email }}">
+                        <span class="input-group-addon">
+                            <span>Email</span>
+                            &nbsp;
+                            <span class="glyphicon glyphicon-inbox"></span>
                         </span>
                     </div>
                     <br>
