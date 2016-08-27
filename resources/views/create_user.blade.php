@@ -33,11 +33,6 @@
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
-            <i class="form-control-feedback glyphicon glyphicon-inbox"></i>
-            </div>
-            <br>
-            <div class="form-group has-feedback">
             <input type="name" class="form-control" id="name" name="Father" placeholder="Father's Name/ Husband's Name">
             <i class="form-control-feedback fa fa-male fa-lg"></i>
             </div>
@@ -48,7 +43,7 @@
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" name="Company" placeholder="Company Name">
+            <input type="name" class="form-control" id="name" name="Company" placeholder="Occupation">
             <i class="form-control-feedback glyphicon glyphicon-briefcase"></i>
             </div>
             <br>
@@ -84,7 +79,7 @@
             </div>
             <br>
             <div class="form-group" id="pageMTiles">
-            <input type="checkbox" name="address" id="address" onclick="genericCheckBoxDisabler(address, Peraddress)">
+            <input type="checkbox" name="address" id="address" onclick="genericCheckBoxDisabler(address, Peraddress, Preaddress)">
             &nbsp;Check if Present Address and Permanent Address are the Same.
             </div>
             {{--<div id="address" onclick="requiredPermanentAddress()">click here</div>--}}
@@ -107,19 +102,24 @@
             <i class="form-control-feedback glyphicon glyphicon-phone"></i>
             </div>
             <br>
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
+                <i class="form-control-feedback glyphicon glyphicon-inbox"></i>
+            </div>
+            <br>
             <div class="input-group">
-            <div class="input-group-addon">$</div>
-            <input type="number" min="1" max="1000000" class="form-control" name="bill" id="amount" placeholder="Monthly Bill">
-            <select class="form-control selectpicker" id="billScheme" onchange="genericSelectDisabler(billScheme, amount)">
-            <option value="default">-- Select Bill Scheme --</option>
-            <option value="000">Free</option>
-            <option value="500">500</option>
-            <option value="800">800</option>
-            <option value="1000">1000</option>
-            <option value="2000">2000</option>
-            <option value="5000">5000</option>
-            </select>
-            <div class="input-group-addon">.00</div>
+                <div class="input-group-addon">$</div>
+                <input type="number" min="1" max="1000000" class="form-control" name="bill" id="amount" placeholder="Monthly Bill">
+                <select class="form-control selectpicker" id="billScheme" onchange="genericSelectDisabler(billScheme, amount)">
+                    <option value="default">-- Select Bill Scheme --</option>
+                    <option value="000">Free</option>
+                    <option value="500">500</option>
+                    <option value="800">800</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="5000">5000</option>
+                </select>
+                <div class="input-group-addon">.00</div>
             </div>
             <br>
             <br>
@@ -136,11 +136,11 @@
             <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,bandwidth)">
             <option value="default">-- Select Subscription Scheme (Speed/Bandwidth) --</option>
             <option value="512">512 kbps</option>
-            <option value="1 Mbps">1 Mbps</option>
-            <option value="1.5 Mbps">1.5 Mbps</option>
-            <option value="2 Mbps">2 Mbps</option>
-            <option value="3 Mbps">3 Mbps</option>
-            <option value="5 Mbps">5 Mbps</option>
+            <option value="1">1 Mbps</option>
+            <option value="1.5">1.5 Mbps</option>
+            <option value="2">2 Mbps</option>
+            <option value="3">3 Mbps</option>
+            <option value="5">5 Mbps</option>
             </select>
             <div class="input-group-addon">Mbps</div>
             </div>

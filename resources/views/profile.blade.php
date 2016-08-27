@@ -200,15 +200,15 @@
                     <br>
                     <br>
                     <div class="input-group">
-                        <input type="number" min="1" max="1000000" class="form-control" id="speed" name="dataScheme" placeholder="Connection speed" value="{{ $pro->dataScheme }}">
-                        <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,speed)">
+                        <input type="number" min="1" max="1000000" class="form-control" id="bandwidth" name="dataScheme" placeholder="Connection speed" value="{{ $pro->dataScheme }}">
+                        <select class="form-control selectpicker" id="fixedSpeed" onchange="genericSelectDisabler(fixedSpeed,bandwidth)">
                             <option value="default">-- Select Subscription Scheme (Speed/Bandwidth) --</option>
                             <option value="512">512 kbps</option>
-                            <option value="1 Mbps">1 Mbps</option>
-                            <option value="1.5 Mbps">1.5 Mbps</option>
-                            <option value="2 Mbps">2 Mbps</option>
-                            <option value="3 Mbps">3 Mbps</option>
-                            <option value="5 Mbps">5 Mbps</option>
+                            <option value="1">1 Mbps</option>
+                            <option value="1.5">1.5 Mbps</option>
+                            <option value="2">2 Mbps</option>
+                            <option value="3">3 Mbps</option>
+                            <option value="5">5 Mbps</option>
                         </select>
                         <div class="input-group-addon">Mbps</div>
                         <span class="input-group-addon">

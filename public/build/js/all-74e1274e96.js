@@ -489,13 +489,16 @@ $(document).ready(function() {
     $('#CInfo').DataTable();
 } );
 
-function genericCheckBoxDisabler($token, $id) {
+function genericCheckBoxDisabler($token, $id, $changeVal) {
     // alert('asdfa');
     if($($token).prop("checked")){
-        $($id).attr('disabled',true);
+        // $($id).attr('disabled',true);
+        $($id).val($($changeVal).val());
 
     }else if ($($token).is(":not(:checked)")){
         $($id).attr('disabled',false);
+        // $($id).val($($token).val());
+
     }
 }
 

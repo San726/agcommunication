@@ -24,12 +24,12 @@ class CreateClientsTable extends Migration
             $table->string('Mother');
             $table->string('Company');
             $table->string('gender');
-            $table->date('dob');
+            $table->string('dob');
 
             $table->longText('PresentAddress');
             $table->longText('PermanentAddress');
 
-            $table->date('connectedFrom');
+            $table->string('connectedFrom');
             $table->integer('phone');
             $table->Integer('bill');
             $table->smallInteger('dataScheme');
