@@ -12,15 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+    return view('errors.000');
 });
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/manager', 'managerController@index');
-Route::get('/manage', 'managerController@index');
+//Route::get('/manager', 'managerController@index');
+//Route::get('/manage', 'managerController@index');
 
 //Route::get('/bill_receive', 'managerController@bill_receive');
 Route::any('/user', 'managerController@create_user');
