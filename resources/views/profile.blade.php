@@ -258,14 +258,14 @@
                     <div class="row">
                         <div class="col-lg-9"></div>
                         <div class="col-lg-1">
-                            @if (Auth::check(['email' => 'shanewasahmed@gmail.com']))
+                            @if (Auth::user()->hasUpdate)
                                 <button type="button" onclick="enable()" class="btn btn-danger btn-lg pull-right">Edit</button>
-                            @endif
                         </div>
                         <div class="col-lg-1"></div>
                         <div class="col-lg-1">
                             <button type="submit" class="btn btn-success btn-lg pull-right">Submit</button>
                         </div>
+                        @endif
                     </div>
                     <br>
                 </div>

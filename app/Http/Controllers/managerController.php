@@ -186,4 +186,5 @@ class managerController extends Controller
     public function statement(){
         return view('statement');
     }
+
 }

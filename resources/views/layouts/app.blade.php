@@ -139,7 +139,8 @@
                                 <li><a href="contact2.html">Client Support(Ibrahimpur)</a></li>
                             </ul>
                         </li>
-                @else
+                        <li><a href="{{ url('/login') }}">login</a></li>
+                    @else
                         <li><a href="{{ url('/user') }}">Create User</a></li>
                         {{--<li><a href="{{ url('/profile') }}">Profile</a></li>--}}
                         <li><a href="{{ url('/area') }}">Add Area</a></li>
