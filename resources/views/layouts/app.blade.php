@@ -146,7 +146,20 @@
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
                         {{--<li><a href="{{ url('/customerInfo') }}">Customer Info</a></li>--}}
                         {{--<li><a href="{{ url('/bill') }}">Bill Receive</a></li>--}}
-                        <li><a href="{{ url('customer_info') }}">Report</a></li>
+                        <li><a href="{{ url('/b/demo?csrf=0') }}">Bill Receive</a></li>
+                        {{--<li><a href="{{ url('customer_info') }}">Report</a></li>--}}
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Reports
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('customer_info') }}">Customer Report</a></li>
+                                <li><a href="{{ url('monthly_report') }}">Monthly Report</a></li>
+                            </ul>
+                        </li>
+
                         <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                                 Payments Status
@@ -158,7 +171,7 @@
                                 <li><a href="{{ url('due') }}">Payments Due list</a></li>
                                 <li><a href="{{ url('paid') }}">Payment Paid list</a></li>
                                 {{--<li><a href="{{ url('bill_by_date') }}">Date wise Billi sheet</a></li>--}}
-                                <li><a href="contact2.html">Customer Personal statements</a></li>
+                                <li><a href="{{ url('statement') }}">Customer Personal statements</a></li>
                                 {{--<li><a href="contact2.html"> Date wise bill paid sheet</a></li>--}}
                             </ul>
                         </li>

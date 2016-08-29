@@ -213,6 +213,7 @@ body {
 @media print {
     #noPrint{display: none;}
     header{display: block;}
+    h3{display: block;}
     footer{display: none;}
     #print{display: block;}
     /*a{display: none;}*/
@@ -220,6 +221,6 @@ body {
         content: none !important;
     }
     /*font-family: 'Arima Madurai', cursive;*/
-    table, tr, td{font-size: 5pt;}
+    table, tr, td{font-size: 6pt;}
 }
 /*# sourceMappingURL=all.css.map */

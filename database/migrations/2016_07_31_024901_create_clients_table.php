@@ -15,10 +15,10 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
 
             $table->string('area');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
 
             $table->string('Father');
             $table->string('Mother');
@@ -30,7 +30,7 @@ class CreateClientsTable extends Migration
             $table->longText('PermanentAddress');
 
             $table->string('connectedFrom');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->Integer('bill');
             $table->smallInteger('dataScheme');
             $table->Integer('payment');

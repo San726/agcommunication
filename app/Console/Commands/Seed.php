@@ -4,6 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 class Seed extends Command
 {
@@ -41,6 +46,33 @@ class Seed extends Command
             DB::table('clients')
                         ->update(['paidStatus' => 'due']);
 
+        $dates = date("Y/m/d");
+        list($year, $month, $day) = mb_split( '[/.-]', $dates);
+
+        $name = 'bill_'.$month.'_'.$year;
+
+        Schema::create($name, function (Blueprint $table) {
+
+            $table->string('username')->unique();
+//            $table->string('password');
+            $table->bigInteger('receipt')->unique();
+//            $table->Integer('payment');
+
+            $table->string('method');
+            $table->string('type');
+
+            $table->Integer('bill');
+            $table->string('Month');
+
+            $table->Integer('billentrydate');
+            $table->longText('comment');
+
+            $table->increments('id');
+            $table->integer('ref');
+            $table->timestamps();
+            $table->string('entrydoneby');
+        });
+
 //        DB::table('clients')->insert([
 //            'name' => str_random(10),
 //            'email' => str_random(10).'@gmail.com',
@@ -49,7 +81,7 @@ class Seed extends Command
 //            'gender' => 'female',
 //
 ////            'area' => str_random(10),
-//            'area' => 'kafrul',
+//            'area' => 'Ibrahimpur',
 //            'username' => str_random(7),
 //
 //            'Father' => str_random(6),

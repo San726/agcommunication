@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Object_;
 
 class managerController extends Controller
 {
@@ -23,17 +25,60 @@ class managerController extends Controller
         return view('manager');
     }
 
-    public function bill_receive(){
-        return view('bill_receive');
-    }
+//    public function bill_receive(){
+//        $profile = DB::table('clients')
+//            ->where('id', $id)
+//            ->where('name', $name)->get();
+//        return view('bill');
+//    }
 
     public function bill_pay($name){
         $id = $_GET['csrf'];
+       if ($id == 0){
+           return view('bill_receive');
+       }
+
+        $dates = date("Y/m/d");
+        list($year, $month, $day) = mb_split( '[/.-]', $dates);
+
+        $table = 'bill_'.$month.'_'.$year;
+
+
         $profile = DB::table('clients')
             ->where('id', $id)
             ->where('name', $name)->get();
+
+        $user = ''.$profile[0]->username;
+//        $password = ''.$profile[0]->password;
+        $ref = ''.$profile[0]->id;
+
+        if(!empty($_GET['receipt']) && !empty($_GET['bill']))
+        {
+            DB::table($table)->insert(
+                [
+                    'username' => $user,
+//                    'password' => $password,
+                    'receipt' => $_GET['receipt'],
+                    'method' => $_GET['method'],
+                    'type' => $_GET['type'],
+                    'bill' => $_GET['bill'],
+                    'Month' => $_GET['Month'],
+                    'billentrydate' => $_GET['billentrydate'],
+                    'comment' => $_GET['comment'],
+                    'ref' => $ref,
+                    'entrydoneby' => Auth::user()
+                ]);
+            DB::table('clients')
+                ->where('id', $id)
+                ->update([
+                    'paidStatus' => 'paid',
+                    'comment' => $_GET['comment']
+                ]);
+        }
+
         if($profile)
             return view('bill', compact('profile'));
+//                return $profile;
         else
             return view('errors.404');
     }
@@ -136,5 +181,9 @@ class managerController extends Controller
 
     public function customer_info(){
         return view('customer_info');
+    }
+
+    public function statement(){
+        return view('statement');
     }
 }

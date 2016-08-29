@@ -16,6 +16,22 @@ class reportController extends Controller
         return view('customer_info')->with('users',$users);
     }
 
+    public function monthly_report(){
+        if(!empty($_GET['areabybill']) && $_GET['areabybill'] != "default"){
+            $area = $_GET['areabybill'];
+            $users = DB::table('clients')->where('area', $area)->get();
+        }else{
+            $users = Clients::all();
+        }
+        return view('reports', compact('users'));
+    }
+
+//    public function monthly_filter(){
+//        $area = $_GET['areabybill'];
+//        $users = DB::table('clients')->where('area', $area)->get();
+//        return view('reports', compact('users'));
+//    }
+
     public function paidStatus(){
 //        $paid = Clients::all();
         $users = DB::table('clients')->where('paidStatus', 'paid')->get();

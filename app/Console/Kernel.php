@@ -29,7 +29,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('seed:Databaseseed')->monthlyOn(29, '15:00');
+//        $schedule->command('seed:Databaseseed')->monthlyOn(29, '15:00');
+        $schedule->command('seed:Databaseseed')->monthlyOn(1, '00:00');
 //        $schedule->command('seed:Databaseseed')->everyMinute();
     }
 }

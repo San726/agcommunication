@@ -22,12 +22,13 @@ Route::get('/home', 'HomeController@index');
 Route::get('/manager', 'managerController@index');
 Route::get('/manage', 'managerController@index');
 
-Route::get('/bill', 'managerController@bill_receive');
+//Route::get('/bill_receive', 'managerController@bill_receive');
 Route::any('/user', 'managerController@create_user');
 //Route::get('/profile', 'managerController@profile');
 Route::any('/area', 'managerController@create_area');
 
 Route::get('/customer_info', 'reportController@CustomerInfo');
+Route::get('/monthly_report', 'reportController@monthly_report');
 
 Route::get('/due', 'reportController@dueStatus');
 Route::get('/paid', 'reportController@paidStatus');
@@ -40,7 +41,9 @@ Route::post('/bill_by_date', 'reportController@datewisebillsheetafterpost');
 
 Route::get('/area_bill', 'reportController@area_bill');
 
-Route::get('/b/{id}', 'managerController@bill_pay');
+Route::get('/statement', 'managerController@statement');
+
+Route::get('/b/{name}', 'managerController@bill_pay');
 
 //Route::get('/profile/{id}', 'managerController@showProfile');
 
