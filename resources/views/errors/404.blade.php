@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Oops! we can't seem to find the page you're looking for. (DO NOT ENTRY ANYTHING UNTIL FURTHER NOTICE!!!)</div>
+                <div class="title">Oops! we can't seem to find the page you're looking for.</div>
             </div>
         </div>
     </body>
