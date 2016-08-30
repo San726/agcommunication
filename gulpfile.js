@@ -21,7 +21,8 @@ elixir(function(mix) {
         .scripts([
             'bootstrap-datepicker.js',
             'custom.js',
-            'jquery.hideseek.min.js'
+            'jquery.hideseek.min.js',
+            'create_collector_validation.js'
         ])
         .scripts('profile_control.js')
         .version([

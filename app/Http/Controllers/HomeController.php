@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -25,5 +26,24 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//            'name' => 'required|max:255|unique:users',
+////            'email' => 'email|max:255',
+//            'password' => 'required|min:6|confirmed',
+//        ]);
+//    }
+
+    public function create_collector(){
+        if(isset($_POST['name']) && isset($_POST['password'])) {
+            $name = $_POST['name'];
+            $password = bcrypt($_POST['password']);
+            DB::table('users')
+                ->insert(['name' => $name, 'password' => $password]);
+        }
+        return view('create_collector');
     }
 }

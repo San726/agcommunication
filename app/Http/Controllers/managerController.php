@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Object_;
+use Illuminate\Support\Facades\Hash;
 
 class managerController extends Controller
 {
@@ -87,7 +88,7 @@ class managerController extends Controller
 
         if(!empty($_POST['area']))
         {
-            DB::table('clients')->insert(
+            $id = DB::table('clients')->insert(
                 [
                     'area' => $_POST['area'],
                     'username' => $_POST['username'],
@@ -109,6 +110,8 @@ class managerController extends Controller
                     'status' => $_POST['status'],
                     'comment' => $_POST['comments']
                 ]);
+            DB::table('users')
+                ->insert(['name' => $_POST['username'], 'password' => bcrypt($_POST['password']), 'clientref' => $id, 'clients' => 1]);
         }
         $areas = DB::table('areas')->get();
         return view('create_user', compact('areas'));
@@ -126,7 +129,8 @@ class managerController extends Controller
 
     public function showProfileByName($name){
         $id = $_GET['csrf'];
-
+        $epass = DB::table('clients')
+                    ->where('id', $id)->get();
         if(!empty($_POST['area']))
         {
             DB::table('clients')
@@ -135,7 +139,6 @@ class managerController extends Controller
                 [
                     'area' => $_POST['area'],
                     'username' => $_POST['username'],
-                    'password' => $_POST['password'],
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
                     'Father' => $_POST['Father'],
@@ -154,6 +157,32 @@ class managerController extends Controller
                     'comment' => $_POST['comments'],
                     'paidStatus' => $_POST['paidStatus']
                 ]);
+
+            foreach ($epass as $expass){
+                if(isset($_POST['password']) && $expass != $_POST['password'] && $_POST['password'] != ""){
+                    DB::table('clients')
+                        ->where('id', $id)
+                        ->update(['password' => $_POST['password']]);
+                }
+            }
+
+//            DB::table('users')
+//                ->insert(['name' => $_POST['username'], 'password' => bcrypt($_POST['password'])]);
+
+            $temp = DB::table('users')
+                ->where('clientref', $id);
+
+            $temp->update(['name' => $_POST['username']]);
+
+            if(isset($_POST['password'])){
+                $check = $_POST['password'];
+                foreach ($temp->get() as $t){
+                    if (!Hash::check($check, $t->password)){
+                        $password = bcrypt($_POST['password']);
+                        $temp->update(['password' => $password]);
+                    }
+                }
+            }
         }
 
 
@@ -187,4 +216,114 @@ class managerController extends Controller
         return view('statement');
     }
 
+    public function permission(){
+        if (!empty($_GET['id'])){
+            $temp = DB::table('users')
+                ->where('id', $_GET['id']);
+        }else{
+            $users = DB::table('users')
+                ->where('clients',0)
+                ->get();
+            return view('permission',compact('users'));
+        }
+
+        if (!empty($_GET['password']) && !empty($_GET['id'])){
+            $check = $_GET['password'];
+            foreach ($temp->get() as $t){
+                if (!Hash::check($check, $t->password)){
+                    $password = bcrypt($_GET['password']);
+                    DB::table('users')
+                        ->where('id', $_GET['id'])
+                        ->update(['password' => $password]);
+                }
+            }
+        }
+
+//        if (!empty($_GET['password']) && !empty($_GET['id'])){
+//            $pass = $_GET['password'];
+//            $id = $_GET['id'];
+////            return $pass;
+//
+////            @foreach(Auth::user()->where('id',3)->get() as $p)
+////            {{ $p->name }} <span class="caret"></span>
+////            @endforeach
+//
+//            Auth::user()->where('id',$id)->get()->fill([
+//                'password' => Hash::make($pass)
+//            ])->save();
+//
+////            user()->fill([
+////                'password' => Hash::make($pass)
+////            ])->save();
+//
+////            DB::table('users')
+////                ->where('id', $_GET['id'])
+////                ->update(['password' => $pass]);
+//        }
+
+//        if(!empty($_GET['admin']) && $_GET['admin'] == 'on'){
+//            $temp->update(
+//                ['admin' => 1]
+//            );
+//        }else{
+//            $temp->update(
+//                ['admin' => 0]
+//            );
+//        }
+//
+//        if(!empty($_GET['clients']) && $_GET['clients'] == 'on'){
+//            $temp->update(
+//                ['clients' => 1]
+//            );
+//        }else{
+//            $temp->update(
+//                ['clients' => 0]
+//            );
+//        }
+//
+//        if(!empty($_GET['collector']) && $_GET['collector'] == 'on'){
+//            $temp->update(
+//                ['collector' => 1]
+//            );
+//        }else{
+//            $temp->update(
+//                ['collector' => 0]
+//            );
+//        }
+
+        if(!empty($_GET['hasReport']) && $_GET['hasReport'] == 'on'){
+            $temp->update(
+                ['hasReport' => 1]
+            );
+        }else{
+            $temp->update(
+                ['hasReport' => 0]
+            );
+        }
+
+        if(!empty($_GET['hasBill']) && $_GET['hasBill'] == 'on'){
+            $temp->update(
+                ['hasBill' => 1]
+            );
+        }else{
+            $temp->update(
+                ['hasBill' => 0]
+            );
+        }
+
+        if(!empty($_GET['hasUpdate']) && $_GET['hasUpdate'] == 'on'){
+            $temp->update(
+                ['hasUpdate' => 1]
+            );
+        }else{
+            $temp->update(
+                ['hasUpdate' => 0]
+            );
+        }
+
+        $users = DB::table('users')
+            ->where('clients',0)
+            ->get();
+        return view('permission',compact('users'));
+    }
 }

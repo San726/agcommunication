@@ -35,7 +35,9 @@
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="text" class="form-control" name="password" id="password"  placeholder="Password" value="{{ $pro->password }}">
+                        <h4><b>Current Password</b>{{ $pro->password }}</h4>
+                        <br>
+                        <input type="text" class="form-control" name="password" id="password"  placeholder="Password">
                         <span class="input-group-addon">
                             <span>Password</span>
                             &nbsp;

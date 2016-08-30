@@ -18,10 +18,12 @@ Route::get('/', function () {
 
 Route::auth();
 
+Route::any('/create_collector', 'HomeController@create_collector');
+
 Route::get('/home', 'HomeController@index');
 
-//Route::get('/manager', 'managerController@index');
-//Route::get('/manage', 'managerController@index');
+Route::get('/manager', 'managerController@index');
+Route::get('/manage', 'managerController@index');
 
 //Route::get('/bill_receive', 'managerController@bill_receive')
 Route::any('/user', 'managerController@create_user');
@@ -36,14 +38,16 @@ Route::get('/paid', 'reportController@paidStatus')->middleware('hasReport');
 
 //Route::get('/bill_by_date', 'reportController@datewisebillsheetafterpost');
 
-Route::post('/bill_by_date', 'reportController@datewisebillsheetafterpost');
+Route::post('/bill_by_date', 'reportController@datewisebillsheetafterpost')->middleware('hasReport');
 
 //Route::post('/bill-paid', 'reportController@datewisebillpaidsheet');
 //Route::post('/bill-paid', 'reportController@datewisebillpaidsheetafterpost');
 
-Route::get('/area_bill', 'reportController@area_bill');
+Route::get('/area_bill', 'reportController@area_bill')->middleware('hasBill');
 
 Route::get('/statement', 'managerController@statement');
+
+Route::get('/permission', 'managerController@permission')->middleware('isAdmin');
 
 Route::get('/b/{name}', 'managerController@bill_pay')->middleware('hasBill');
 

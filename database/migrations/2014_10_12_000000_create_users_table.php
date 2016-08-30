@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('hasReport');
             $table->boolean('hasBill');
             $table->boolean('hasUpdate');
+            $table->integer('clientref');
             $table->rememberToken();
             $table->timestamps();
         });

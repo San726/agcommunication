@@ -142,8 +142,20 @@
                         <li><a href="{{ url('/login') }}">login</a></li>
                     @else
                         <li><a href="{{ url('/user') }}">Create User</a></li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Adding
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/area') }}">Add Area</a></li>
+                                <li><a href="{{ url('/create_collector') }}">Add Collector</a></li>
+                            </ul>
+                        </li>
+
                         {{--<li><a href="{{ url('/profile') }}">Profile</a></li>--}}
-                        <li><a href="{{ url('/area') }}">Add Area</a></li>
+                        <li><a href="{{ url('/permission') }}">Permission</a></li>
                         {{--<li><a href="{{ url('/Add Customer Info') }}">Password Change</a></li>--}}
                         {{--<li><a href="{{ url('/customerInfo') }}">Customer Info</a></li>--}}
                         {{--<li><a href="{{ url('/bill') }}">Bill Receive</a></li>--}}
@@ -214,6 +226,7 @@
     <script src="{{ elixir('js/all.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 
     {{--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>--}}
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
