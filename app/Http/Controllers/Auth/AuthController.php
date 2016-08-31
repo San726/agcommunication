@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -52,6 +54,17 @@ class AuthController extends Controller
             'email' => 'email|max:255',
             'password' => 'required|min:6|confirmed',
         ]);
+    }
+
+    public function login()
+    {
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        if (Auth::attempt(['name' => $name, 'password' => $password])) {
+            return redirect()->intended('/home');
+        }else
+            return redirect()->intended('/login');
+//                ->withErrors("");
     }
 
     /**

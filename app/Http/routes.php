@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Route::auth();
 
+Route::post('/login', 'Auth\AuthController@login');
+
 Route::any('/create_collector', 'HomeController@create_collector');
 
 Route::get('/home', 'HomeController@index');
