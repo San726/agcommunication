@@ -45,9 +45,9 @@
 
 <script>
 
-    $( document ).ready(function() {
-        $("#myModal").modal();
-    });
+//    $( document ).ready(function() {
+//        $("#myModal").modal();
+//    });
 
 </script>
 @endsection
