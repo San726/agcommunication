@@ -42,8 +42,10 @@ class managerController extends Controller
         $dates = date("Y/m/d");
         list($year, $month, $day) = mb_split( '[/.-]', $dates);
 
-        $table = 'bill_'.$month.'_'.$year;
-
+        if(isset($_GET['Month'])) {
+            $monthy = $_GET['Month'];
+            $table = 'bill_' . $monthy . '_' . $year;
+        }
 
         $profile = DB::table('clients')
             ->where('id', $id)
@@ -52,6 +54,8 @@ class managerController extends Controller
         $user = ''.$profile[0]->username;
 //        $password = ''.$profile[0]->password;
         $ref = ''.$profile[0]->id;
+
+//        DB::table('b_tables')->insert(['table',$table]);
 
         if(!empty($_GET['receipt']) && !empty($_GET['bill']))
         {
@@ -138,7 +142,7 @@ class managerController extends Controller
                         ->update(
                 [
                     'area' => $_POST['area'],
-                    'username' => $_POST['username'],
+//                    'username' => $_POST['username'],
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
                     'Father' => $_POST['Father'],
@@ -172,18 +176,41 @@ class managerController extends Controller
             $temp = DB::table('users')
                 ->where('clientref', $id);
 
-            $temp->update(['name' => $_POST['username']]);
+//            if(isset($_POST['username']) && $_POST[]){
+//                $check = $_POST['username'];
+//                foreach ($temp->get() as $t){
+//                    if (!Hash::check($check, $t->password)){
+//                        $password = bcrypt($_POST['password']);
+//                        $temp->update(['password' => $password]);
+//                    }
+//                }
+//            }
+//            $temp->update(['name' => $_POST['username']]);
 
-            if(isset($_POST['password'])){
+//            if(isset($_POST['password'])){
+//                $check = $_POST['password'];
+//                foreach ($temp->get() as $t){
+//                    if (!Hash::check($check, $t->password)){
+//                        $password = bcrypt($_POST['password']);
+//                        $temp->update(['password' => $password]);
+//                    }
+//                }
+//            }
+
+            if (!empty($_POST['password']) && $_POST['phone'] != '') {
                 $check = $_POST['password'];
-                foreach ($temp->get() as $t){
-                    if (!Hash::check($check, $t->password)){
+                foreach ($temp->get() as $t) {
+                    if (!Hash::check($check, $t->password)) {
                         $password = bcrypt($_POST['password']);
-                        $temp->update(['password' => $password]);
+                        DB::table('users')
+                            ->where('username', $_POST['phone'])
+                            ->update(['password' => $password]);
                     }
                 }
             }
+
         }
+
 
 
         $profile = DB::table('clients')
@@ -195,6 +222,7 @@ class managerController extends Controller
             return view('errors.404');
 //
 //        return $profile;
+
     }
 
     public function create_area(){
@@ -214,6 +242,51 @@ class managerController extends Controller
 
     public function statement(){
         return view('statement');
+    }
+
+//    public function statementShowClient($name){
+//        $id = $_GET['csrf'];
+//
+//        $profile = DB::table('clients')
+//            ->where('id', $id)->get();
+////            ->where('name', $name)->get();
+////        return $profile;
+//        if($profile)
+//            return view('statementShowClients', compact('profile'));
+//        else
+//            return view('errors.404');
+//    }
+    
+    public function statementShow($name){
+        $id = $_GET['csrf'];
+
+        $profile = DB::table('clients')
+            ->where('id', $id)
+            ->where('name', $name)->get();
+
+        $bStore = array();
+//      bs for  billStatement
+        $bS = DB::table('b_tables')->get();
+        foreach ($bS as $t) {
+            $aS= $t->table;
+//        }
+//
+//
+//        foreach ($bS as $BS){
+//            $aS= $t->table;
+            $dataOb =  DB::table($aS)
+                    ->where('ref',$id)
+                    ->get();
+//            return $dataOb;
+            array_push($bStore, $dataOb);
+//            foreach ($dataOb as $user)
+//                foreach ($user as $tel)
+//                    $entryby = $tel;
+        }
+        if($profile)
+            return view('statementShow', compact('profile', 'bStore'));
+        else
+            return view('errors.404');
     }
 
     public function permission(){

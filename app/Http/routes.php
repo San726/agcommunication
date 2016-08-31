@@ -54,3 +54,7 @@ Route::get('/b/{name}', 'managerController@bill_pay')->middleware('hasBill');
 //Route::get('/profile/{id}', 'managerController@showProfile');
 
 Route::any('/p/{name}', 'managerController@showProfileByName');
+
+Route::any('/s/{name}', 'managerController@statementShow');
+
+//Route::any('/s/{name}', 'managerController@statementShowClient');

@@ -26,17 +26,18 @@
                     <br>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <input type="username" class="form-control" name="username" id="name" placeholder="User Name" value="{{ $pro->username }}">
-                        <span class="input-group-addon">
-                            <span>User Name</span>
-                            &nbsp;
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </span>
+                        <h4><b>Current User Name: </b>{{ $pro->username }}</h4>
+                        <br>
+                        <h4><b>Current Password: </b>{{ $pro->password }}</h4>
+                        {{--<input type="username" class="form-control" name="username" id="name" placeholder="User Name">--}}
+                        {{--<span class="input-group-addon">--}}
+                        {{--<span>User Name</span>--}}
+                        {{--&nbsp;--}}
+                        {{--<span class="glyphicon glyphicon-pencil"></span>--}}
+                        {{--</span>--}}
                     </div>
                     <br>
                     <div class="form-group has-feedback input-group">
-                        <h4><b>Current Password</b>{{ $pro->password }}</h4>
-                        <br>
                         <input type="text" class="form-control" name="password" id="password"  placeholder="Password">
                         <span class="input-group-addon">
                             <span>Password</span>
