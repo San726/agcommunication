@@ -4,7 +4,7 @@
     <div class="container">
         <br><br>
         <br><br>
-        <form action="/user" method="post">
+        <form action="/user" method="post" name="createUser">
             {{csrf_field()}}
             <div class="col-xs-12">
             <h3 id="pageMTiles">Create User Profile</h3>
@@ -18,7 +18,7 @@
             <br>
             <br>
             <div class="form-group has-feedback">
-            <input type="username" class="form-control" name="username" id="name" placeholder="User Name">
+            <input type="username" class="form-control" name="username" id="username" placeholder="User Name">
             <i class="form-control-feedback glyphicon glyphicon-pencil"></i>
             </div>
             <br>
@@ -33,17 +33,17 @@
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" name="Father" placeholder="Father's Name/ Husband's Name">
+            <input type="name" class="form-control" id="Father" name="Father" placeholder="Father's Name/ Husband's Name">
             <i class="form-control-feedback fa fa-male fa-lg"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" name="Mother" placeholder="Mother's Name">
+            <input type="name" class="form-control" id="Mother" name="Mother" placeholder="Mother's Name">
             <i class="form-control-feedback fa fa-female fa-lg"></i>
             </div>
             <br>
             <div class="form-group has-feedback">
-            <input type="name" class="form-control" id="name" name="Company" placeholder="Occupation">
+            <input type="name" class="form-control" id="Company" name="Company" placeholder="Occupation">
             <i class="form-control-feedback glyphicon glyphicon-briefcase"></i>
             </div>
             <br>
@@ -54,7 +54,7 @@
             </label>
             &nbsp;
             <label>
-            <input type="radio" name="gender" id="gender" value="male">
+            <input type="radio" name="gender" id="gender" value="male" checked>
             Male
             </label>
             &nbsp;&nbsp;

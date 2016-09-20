@@ -241,6 +241,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ url('customer_info') }}">Customer Report</a></li>
                                     <li><a href="{{ url('monthly_report') }}">Monthly Report</a></li>
+                                    <li><a href="{{ url('statement') }}">Customer Personal statements</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -260,7 +261,7 @@
                                     }
                                     ?>
 {{--                                    @if(Auth::user()->clients != 1)--}}
-                                    <li><a href="{{ url('statement') }}">Customer Personal statements</a></li>
+                                    {{--<li><a href="{{ url('statement') }}">Customer Personal statements</a></li>--}}
                                     {{--@else--}}
                                         {{--<li><a href="/s/{{ $name }}?csrf={{ $id }}">P R O F I L E</a></li>--}}
                                         {{--<hr>--}}

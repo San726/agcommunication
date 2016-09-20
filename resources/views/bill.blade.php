@@ -6,13 +6,14 @@
         <input class="form-control" id="search" name="search" placeholder="Start typing here" type="text" data-list=".list" autofocus>
         @foreach(DB::table('clients')->get() as $filter)
             <ul class="list">
-                <span>Name: <a href="/b/{{ $filter->name}}?csrf={{ $filter->id }}">{{ $filter->username }}</a>&nbsp;Address: {{ $filter->PresentAddress }}</span>
+                {{--<span>Name: <a href="/b/{{ $filter->name}}?csrf={{ $filter->id }}">{{ $filter->username }}</a>&nbsp;Address: {{ $filter->PresentAddress }}</span>--}}
+                <span><b>Name:</b> {{ $filter->name }} <b>U</b>ser Name: <a href="/s/{{ $filter->name}}?csrf={{ $filter->id }}">{{ $filter->username }}</a>&nbsp;<b>A</b>ddress: {{ $filter->PresentAddress }}</span>
             </ul>
         @endforeach
         <br><br>
         <br><br>
         @foreach($profile as $pro)
-        <form action="/b/{{ $pro->name }}" method="get">
+        <form action="/b/{{ $pro->name }}" method="get" name="bill">
             <input type="hidden" name="csrf" value="{{ $pro->id }}">
             <div class="col-xs-12">
                 <h3 id="pageMTiles">Bill Receipt</h3>
@@ -155,6 +156,9 @@
                     <div class="input-group-addon">.00</div>
                 </div>
                 <br>
+                <?php
+
+                ?>
                 <select class="form-control selectpicker" name="Month">
                     <option>--- Select Month ---</option>
                     <option value="01">January</option>

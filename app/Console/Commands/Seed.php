@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 
 
 class Seed extends Command
@@ -66,7 +65,7 @@ class Seed extends Command
             $table->Integer('bill');
             $table->string('Month');
 
-            $table->Integer('billentrydate');
+            $table->string('billentrydate');
             $table->longText('comment');
 
             $table->increments('id');

@@ -41,3 +41,7 @@ body {
     /*font-family: 'Arima Madurai', cursive;*/
     table, tr, td{font-size: 7pt;}
 }
+
+form .error {
+    color: #ff0000;
+}

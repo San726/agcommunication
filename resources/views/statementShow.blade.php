@@ -50,7 +50,7 @@
                         @if(Auth::user()->clients != 1)
                             <th>Entry Date&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                             <th>Comment&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
-                            <th>Entry Details&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th>Entry Done By&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         @endif
                     </tr>
                     </thead>
@@ -62,7 +62,36 @@
                                 <td>{{ $user->receipt }}</td>
                                 <td>{{ $user->method }}</td>
                                 <td>{{ $user->bill }}</td>
-                                <td>{{ $user->Month }}</td>
+                                <td>
+                                    {{--{{ $user->Month }}--}}
+                                    @if($user->Month == 1)
+                                        January
+                                    @elseif($user->Month == 2)
+                                        February
+                                    @elseif($user->Month == 3)
+                                        March
+                                    @elseif($user->Month == 4)
+                                        April
+                                    @elseif($user->Month == 5)
+                                        May
+                                    @elseif($user->Month == 6)
+                                        June
+                                    @elseif($user->Month == 7)
+                                        July
+                                    @elseif($user->Month == 8)
+                                        August
+                                    @elseif($user->Month == 9)
+                                        September
+                                    @elseif($user->Month == 10)
+                                        October
+                                    @elseif($user->Month == 11)
+                                        November
+                                    @elseif($user->Month == 12)
+                                        December
+                                    @else
+                                        Something went wrong
+                                    @endif
+                                </td>
                                 @if(Auth::user()->clients != 1)
                                     <td>{{ $user->billentrydate }}</td>
                                     <td>{{ $user->comment }}</td>
@@ -74,8 +103,8 @@
                                         //                var_dump(json_decode($json));
                                         //                var_dump(json_decode($json, true));
                                         ?>
-                                        <h5><b>Entry Done By : </b></h5>
-                                        <h5>{{ var_dump(json_decode($json))}}</h5>
+                                        {{--<h5><b>Entry Done By : </b></h5>--}}
+                                        <h5>{{ (json_decode($json)->name)}}</h5>
                                     @endif
                                 @endif
                                 </td>

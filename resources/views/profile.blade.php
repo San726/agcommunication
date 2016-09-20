@@ -14,9 +14,9 @@
                         <input id="areaValue" type="text" name="area" class="form-control" value="{{ $pro->area }}">
                         <select id="changeArea" onchange="genericSelectDisabler(changeArea, areaValue)" class="form-control selectpicker">
                             <option>--- Select Area ---</option>
-                            <option value="Ibrahimpur">Ibrahimpur</option>
-                            <option value="Kafrul">Kafrul</option>
-                            <option value="Mirpur">Mirpur</option>
+                            @foreach($areas as $area)
+                                <option value="{{ $area->area }}">{{ $area->area }}</option>
+                            @endforeach
                         </select>
                         <span class="input-group-addon">
                             <span>Area</span>

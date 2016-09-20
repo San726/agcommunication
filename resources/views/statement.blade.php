@@ -6,7 +6,7 @@
         <input class="form-control" id="search" name="search" placeholder="Start typing here" type="text" data-list=".list" autofocus>
         @foreach(DB::table('clients')->get() as $filter)
             <ul class="list">
-                <span>Name: <a href="/s/{{ $filter->name}}?csrf={{ $filter->id }}">{{ $filter->username }}</a>&nbsp;Address: {{ $filter->PresentAddress }}</span>
+                <span><b>Name:</b> {{ $filter->name }} <b>U</b>ser Name: <a href="/s/{{ $filter->name}}?csrf={{ $filter->id }}">{{ $filter->username }}</a>&nbsp;<b>A</b>ddress: {{ $filter->PresentAddress }}</span>
             </ul>
         @endforeach
     </div>

@@ -173,9 +173,8 @@ class managerController extends Controller
 //            DB::table('users')
 //                ->insert(['name' => $_POST['username'], 'password' => bcrypt($_POST['password'])]);
 
-            $temp = DB::table('users')
-                ->where('clientref', $id);
-
+//            $temp = DB::table('users')
+//                ->where('name', $id);
 //            if(isset($_POST['username']) && $_POST[]){
 //                $check = $_POST['username'];
 //                foreach ($temp->get() as $t){
@@ -197,27 +196,29 @@ class managerController extends Controller
 //                }
 //            }
 
-            if (!empty($_POST['password']) && $_POST['phone'] != '') {
-                $check = $_POST['password'];
-                foreach ($temp->get() as $t) {
-                    if (!Hash::check($check, $t->password)) {
-                        $password = bcrypt($_POST['password']);
-                        DB::table('users')
-                            ->where('username', $_POST['phone'])
-                            ->update(['password' => $password]);
-                    }
-                }
-            }
-
         }
 
-
+        if (!empty($_POST['password'])){
+            $check = $_POST['password'];
+            foreach ($epass as $t){
+                if (!Hash::check($check, $t->password)){
+                    $password = bcrypt($_POST['password']);
+                    DB::table('users')
+                        ->where('name', $t->username)
+                        ->update(['password' => $password]);
+                }
+            }
+        }
 
         $profile = DB::table('clients')
                         ->where('id', $id)
                         ->where('name', $name)->get();
+
+        $areas = DB::table('areas')->get();
+
         if($profile)
-            return view('profile', compact('profile'));
+//            return $name;
+            return view('profile', compact('profile','areas'));
         else
             return view('errors.404');
 //
@@ -284,6 +285,7 @@ class managerController extends Controller
 //                    $entryby = $tel;
         }
         if($profile)
+//            return $bStore
             return view('statementShow', compact('profile', 'bStore'));
         else
             return view('errors.404');
