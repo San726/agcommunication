@@ -103,6 +103,7 @@
                     $sum = 0;
                     $paid = 0;
                     $due = 0;
+                    $i = 1;
                 ?>
                 <table id="CInfo" class="table table-striped table-bordered">
                     <thead>
@@ -118,13 +119,13 @@
                         <th>Phone Number&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th>Present Address&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th id="noPrint">Status&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th id="noPrint">Payment&nbsp;Status<i class="fa fa-sort" aria-hidden="true"></i></th>
+                        {{--<th id="noPrint">Payment&nbsp;Status<i class="fa fa-sort" aria-hidden="true"></i></th>--}}
                     </tr>
                     </thead>
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td id="noPrint">{{ $user->area }}</td>
                                 <td><a href="/p/{{ $user->name }}?csrf={{ $user->id }}">{{ $user->name }}</a></td>
                                 <td>{{ $user->username }}</td>
@@ -135,19 +136,19 @@
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->PresentAddress }}</td>
                                 <td id="noPrint">{{ $user->status }}</td>
-                                <td id="noPrint">
-                                    @if($user->paidStatus == "paid")
-                                        <p style="text-decoration: none; color: darkgreen">
-                                            {{ $user -> paidStatus }}
-                                        </p>
-                                    @else
-                                        <p>
-                                            <a style="text-decoration: none; color: red" href="/b/{{ $user->name }}?csrf={{ $user -> id }}">
-                                                {{ $user -> paidStatus }}
-                                            </a>
-                                        </p>
-                                    @endif
-                                </td>
+                                {{--<td id="noPrint">--}}
+                                    {{--@if($user->paidStatus == "paid")--}}
+                                        {{--<p style="text-decoration: none; color: darkgreen">--}}
+                                            {{--{{ $user -> paidStatus }}--}}
+                                        {{--</p>--}}
+                                    {{--@else--}}
+                                        {{--<p>--}}
+                                            {{--<a style="text-decoration: none; color: red" href="/b/{{ $user->name }}?csrf={{ $user -> id }}">--}}
+                                                {{--{{ $user -> paidStatus }}--}}
+                                            {{--</a>--}}
+                                        {{--</p>--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
                             </tr>
                             @if ($user -> paidStatus == 'paid')
                                 <input type="hidden" value="{{ $paid = $paid + $user->bill }}">

@@ -45,8 +45,8 @@
                         <th>#</th>
                         <th>Receipt No.&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th>Billing Method&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th>Bill (TK.)&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th>Billing Month&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th>Bill (TK.)&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                         @if(Auth::user()->clients != 1)
                             <th>Entry Date&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
                             <th>Comment&nbsp;<i class="fa fa-sort" aria-hidden="true"></i></th>
@@ -55,13 +55,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $i = 1?>
                     @foreach($bStore as $u)
                         @foreach ($u as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $user->receipt }}</td>
                                 <td>{{ $user->method }}</td>
-                                <td>{{ $user->bill }}</td>
                                 <td>
                                     {{--{{ $user->Month }}--}}
                                     @if($user->Month == 1)
@@ -92,7 +92,8 @@
                                         Something went wrong
                                     @endif
                                 </td>
-                                @if(Auth::user()->clients != 1)
+                                <td>{{ $user->bill }}</td>
+                            @if(Auth::user()->clients != 1)
                                     <td>{{ $user->billentrydate }}</td>
                                     <td>{{ $user->comment }}</td>
                                 <td>
@@ -109,9 +110,19 @@
                                 @endif
                                 </td>
                             </tr>
+                            <input type="hidden" value="{{ $sum = $sum + $user->bill }}">
                         @endforeach
                     @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total: </th>
+                            <td class="invisible"></td>
+                            <td class="invisible"></td>
+                            <td class="invisible"></td>
+                            <td><b>{{ $sum }} Tk.</b></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <br><br>

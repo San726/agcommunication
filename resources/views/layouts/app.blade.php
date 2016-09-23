@@ -239,8 +239,8 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ url('customer_info') }}">Customer Report</a></li>
-                                    <li><a href="{{ url('monthly_report') }}">Monthly Report</a></li>
+                                    <li><a href="{{ url('customer_info') }}">Customer Info</a></li>
+                                    <li><a href="{{ url('monthly_report') }}">Monthly Billing sheet</a></li>
                                     <li><a href="{{ url('statement') }}">Customer Personal statements</a></li>
                                 </ul>
                             </li>

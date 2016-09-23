@@ -259,6 +259,8 @@ class managerController extends Controller
 //    }
     
     public function statementShow($name){
+        $sum = 0;
+
         $id = $_GET['csrf'];
 
         $profile = DB::table('clients')
@@ -286,7 +288,7 @@ class managerController extends Controller
         }
         if($profile)
 //            return $bStore
-            return view('statementShow', compact('profile', 'bStore'));
+            return view('statementShow', compact('profile', 'bStore', 'sum'));
         else
             return view('errors.404');
     }
