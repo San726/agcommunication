@@ -125,9 +125,9 @@
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $i++ }}</td>
+                                <td><a href="/p/{{ $user->name }}?csrf={{ $user->id }}">{{ $i++ }}</a></td>
                                 <td id="noPrint">{{ $user->area }}</td>
-                                <td><a href="/p/{{ $user->name }}?csrf={{ $user->id }}">{{ $user->name }}</a></td>
+                                <td><a href="/s/{{ $user->name }}?csrf={{ $user->id }}">{{ $user->name }}</a></td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->password }}</td>
                                 <td>{{ $user->bill }}&nbsp;Tk</td>
