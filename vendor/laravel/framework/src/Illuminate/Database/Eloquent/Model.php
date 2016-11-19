@@ -521,7 +521,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
 
         $model->setRawAttributes((array) $attributes, true);
 
-        $model->setConnection($connection ?: $this->getConnectionName());
+        $model->setConnection($connection ?: $this->connection);
 
         return $model;
     }
@@ -828,11 +828,11 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         list($type, $id) = $this->getMorphs($name, $type, $id);
 
         // If the type value is null it is probably safe to assume we're eager loading
-        // the relationship. In this case we'll just pass in a dummy query where we
-        // need to remove any eager loads that may already be defined on a model.
+        // the relationship. When that is the case we will pass in a dummy query as
+        // there are multiple types in the morph and we can't use single queries.
         if (empty($class = $this->$type)) {
             return new MorphTo(
-                $this->newQuery()->setEagerLoads([]), $this, $id, null, $type, $name
+                $this->newQuery(), $this, $id, null, $type, $name
             );
         }
 
@@ -2141,21 +2141,6 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     }
 
     /**
-     * Make the given, typically visible, attributes hidden.
-     *
-     * @param  array|string  $attributes
-     * @return $this
-     */
-    public function makeHidden($attributes)
-    {
-        $this->visible = array_diff($this->visible, (array) $attributes);
-
-        $this->hidden = array_unique(array_merge($this->hidden, $attributes));
-
-        return $this;
-    }
-
-    /**
      * Make the given, typically hidden, attributes visible.
      *
      * @param  array|string  $attributes
@@ -2610,14 +2595,10 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
     protected function getArrayableItems(array $values)
     {
         if (count($this->getVisible()) > 0) {
-            $values = array_intersect_key($values, array_flip($this->getVisible()));
+            return array_intersect_key($values, array_flip($this->getVisible()));
         }
 
-        if (count($this->getHidden()) > 0) {
-            $values = array_diff_key($values, array_flip($this->getHidden()));
-        }
-
-        return $values;
+        return array_diff_key($values, array_flip($this->getHidden()));
     }
 
     /**

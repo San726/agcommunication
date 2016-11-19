@@ -4,8 +4,10 @@ namespace Illuminate\Queue;
 
 use DateTime;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Connection;
 use Illuminate\Queue\Jobs\DatabaseJob;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Contracts\Queue\Queue as QueueContract;
 
 class DatabaseQueue extends Queue implements QueueContract
@@ -159,10 +161,14 @@ class DatabaseQueue extends Queue implements QueueContract
     {
         $queue = $this->getQueue($queue);
 
+        if (! is_null($this->expire)) {
+            $this->releaseJobsThatHaveBeenReservedTooLong($queue);
+        }
+
         $this->database->beginTransaction();
 
         if ($job = $this->getNextAvailableJob($queue)) {
-            $job = $this->markJobAsReserved($job);
+            $this->markJobAsReserved($job->id);
 
             $this->database->commit();
 
@@ -170,6 +176,38 @@ class DatabaseQueue extends Queue implements QueueContract
                 $this->container, $this, $job, $queue
             );
         }
+
+        $this->database->commit();
+    }
+
+    /**
+     * Release the jobs that have been reserved for too long.
+     *
+     * @param  string  $queue
+     * @return void
+     */
+    protected function releaseJobsThatHaveBeenReservedTooLong($queue)
+    {
+        if (random_int(1, 10) < 10) {
+            return;
+        }
+
+        $this->database->beginTransaction();
+
+        $stale = $this->database->table($this->table)
+                    ->lockForUpdate()
+                    ->where('queue', $this->getQueue($queue))
+                    ->where('reserved', 1)
+                    ->where('reserved_at', '<=', Carbon::now()->subSeconds($this->expire)->getTimestamp())
+                    ->get();
+
+        $this->database->table($this->table)
+            ->whereIn('id', Collection::make($stale)->pluck('id')->all())
+            ->update([
+                'reserved' => 0,
+                'reserved_at' => null,
+                'attempts' => new Expression('attempts + 1'),
+            ]);
 
         $this->database->commit();
     }
@@ -185,10 +223,8 @@ class DatabaseQueue extends Queue implements QueueContract
         $job = $this->database->table($this->table)
                     ->lockForUpdate()
                     ->where('queue', $this->getQueue($queue))
-                    ->where(function ($query) {
-                        $this->isAvailable($query);
-                        $this->isReservedButExpired($query);
-                    })
+                    ->where('reserved', 0)
+                    ->where('available_at', '<=', $this->getTime())
                     ->orderBy('id', 'asc')
                     ->first();
 
@@ -196,54 +232,16 @@ class DatabaseQueue extends Queue implements QueueContract
     }
 
     /**
-     * Modify the query to check for available jobs.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @return void
-     */
-    protected function isAvailable($query)
-    {
-        $query->where(function ($query) {
-            $query->where('reserved', 0);
-            $query->where('available_at', '<=', $this->getTime());
-        });
-    }
-
-    /**
-     * Modify the query to check for jobs that are reserved but have expired.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @return void
-     */
-    protected function isReservedButExpired($query)
-    {
-        $expiration = Carbon::now()->subSeconds($this->expire)->getTimestamp();
-
-        $query->orWhere(function ($query) use ($expiration) {
-            $query->where('reserved', 1);
-            $query->where('reserved_at', '<=', $expiration);
-        });
-    }
-
-    /**
      * Mark the given job ID as reserved.
      *
-     * @param \stdClass $job
-     * @return \stdClass
+     * @param  string  $id
+     * @return void
      */
-    protected function markJobAsReserved($job)
+    protected function markJobAsReserved($id)
     {
-        $job->reserved = 1;
-        $job->attempts = $job->attempts + 1;
-        $job->reserved_at = $this->getTime();
-
-        $this->database->table($this->table)->where('id', $job->id)->update([
-            'reserved' => $job->reserved,
-            'reserved_at' => $job->reserved_at,
-            'attempts' => $job->attempts,
+        $this->database->table($this->table)->where('id', $id)->update([
+            'reserved' => 1, 'reserved_at' => $this->getTime(),
         ]);
-
-        return $job;
     }
 
     /**
