@@ -50,58 +50,58 @@ class Seed extends Command
 
         $name = 'bill_'.$month.'_'.$year;
 
-//        DB::table('b_tables')->insert(['table' => $name, 'created_at' => \Carbon\Carbon::now()]);
-//
-//        Schema::create($name, function (Blueprint $table) {
-//
-//            $table->string('username')->unique();
-////            $table->string('password');
-//            $table->bigInteger('receipt')->unique();
-////            $table->Integer('payment');
-//
-//            $table->string('method');
-//            $table->string('type');
-//
-//            $table->Integer('bill');
-//            $table->string('Month');
-//
-//            $table->string('billentrydate');
-//            $table->longText('comment');
-//
-//            $table->increments('id');
-//            $table->integer('ref');
-//            $table->timestamps();
-//            $table->string('entrydoneby');
-//        });
+        DB::table('b_tables')->insert(['table' => $name, 'created_at' => \Carbon\Carbon::now()]);
 
-        DB::table('clients')->insert([
-            'name' => str_random(10),
-            'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret'),
-            'status' => 'free',
-            'gender' => 'female',
+        Schema::create($name, function (Blueprint $table) {
 
-//            'area' => str_random(10),
-            'area' => 'Ibrahimpur',
-            'username' => str_random(7),
+            $table->string('username')->unique();
+//            $table->string('password');
+            $table->bigInteger('receipt')->unique();
+//            $table->Integer('payment');
 
-            'Father' => str_random(6),
-            'Mother' => str_random(6),
-            'Company' => str_random(8),
-            'gender' => 'female',
-            'dob' => \Carbon\Carbon::now(),
+            $table->string('method');
+            $table->string('type');
 
+            $table->Integer('bill');
+            $table->string('Month');
 
-            'PermanentAddress' => str_random(17),
-            'PresentAddress' => str_random(17),
-            'phone' => random_int(10,11),
-            'connectedFrom' => \Carbon\Carbon::now(),
-            'bill' => random_int(500,2000),
-            'dataScheme' => random_int(1,10),
-            'payment' => random_int(1,31),
-            'comment' => str_random(200),
-            'paidStatus' => 'due',
-        ]);
+            $table->string('billentrydate');
+            $table->longText('comment');
+
+            $table->increments('id');
+            $table->integer('ref');
+            $table->timestamps();
+            $table->string('entrydoneby');
+        });
+
+//        DB::table('clients')->insert([
+//            'name' => str_random(10),
+//            'email' => str_random(10).'@gmail.com',
+//            'password' => bcrypt('secret'),
+//            'status' => 'free',
+//            'gender' => 'female',
+//
+////            'area' => str_random(10),
+//            'area' => 'Ibrahimpur',
+//            'username' => str_random(7),
+//
+//            'Father' => str_random(6),
+//            'Mother' => str_random(6),
+//            'Company' => str_random(8),
+//            'gender' => 'female',
+//            'dob' => \Carbon\Carbon::now(),
+//
+//
+//            'PermanentAddress' => str_random(17),
+//            'PresentAddress' => str_random(17),
+//            'phone' => random_int(10,11),
+//            'connectedFrom' => \Carbon\Carbon::now(),
+//            'bill' => random_int(500,2000),
+//            'dataScheme' => random_int(1,10),
+//            'payment' => random_int(1,31),
+//            'comment' => str_random(200),
+//            'paidStatus' => 'due',
+//        ]);
         $this->info('succesfully');
     }
 }
